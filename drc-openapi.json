@@ -1,0 +1,3797 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "pkh-api",
+    "version": "0.0.1",
+    "description": "pkh api",
+    "contact": {
+      "name": "khanh huynh",
+      "email": "huynhkhanh.1603@gmail.com"
+    }
+  },
+  "paths": {
+    "/khovt-master-khos/count": {
+      "get": {
+        "x-controller-name": "KhovtMasterKhoController",
+        "x-operation-name": "count",
+        "tags": ["KhovtMasterKhoController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterKho model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "KhovtMasterKho.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<KhovtMasterKho>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterKhoController.count"
+      }
+    },
+    "/khovt-master-khos/{id}": {
+      "patch": {
+        "x-controller-name": "KhovtMasterKhoController",
+        "x-operation-name": "updateById",
+        "tags": ["KhovtMasterKhoController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterKho PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KhovtMasterKhoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "KhovtMasterKhoController.updateById"
+      },
+      "get": {
+        "x-controller-name": "KhovtMasterKhoController",
+        "x-operation-name": "findById",
+        "tags": ["KhovtMasterKhoController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterKho model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterKhoWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterKho.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterKhoController.findById"
+      },
+      "delete": {
+        "x-controller-name": "KhovtMasterKhoController",
+        "x-operation-name": "deleteById",
+        "tags": ["KhovtMasterKhoController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterKho DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "KhovtMasterKhoController.deleteById"
+      }
+    },
+    "/khovt-master-khos": {
+      "post": {
+        "x-controller-name": "KhovtMasterKhoController",
+        "x-operation-name": "create",
+        "tags": ["KhovtMasterKhoController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterKho model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterKho"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewKhovtMasterKho"
+              }
+            }
+          }
+        },
+        "operationId": "KhovtMasterKhoController.create"
+      },
+      "get": {
+        "x-controller-name": "KhovtMasterKhoController",
+        "x-operation-name": "find",
+        "tags": ["KhovtMasterKhoController"],
+        "responses": {
+          "200": {
+            "description": "Array of KhovtMasterKho model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KhovtMasterKhoWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterKho.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterKhoController.find"
+      }
+    },
+    "/khovt-master-nguon-gocs/count": {
+      "get": {
+        "x-controller-name": "KhovtMasterNguonGocController",
+        "x-operation-name": "count",
+        "tags": ["KhovtMasterNguonGocController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterNguonGoc model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "KhovtMasterNguonGoc.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<KhovtMasterNguonGoc>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterNguonGocController.count"
+      }
+    },
+    "/khovt-master-nguon-gocs/{id}": {
+      "patch": {
+        "x-controller-name": "KhovtMasterNguonGocController",
+        "x-operation-name": "updateById",
+        "tags": ["KhovtMasterNguonGocController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterNguonGoc PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KhovtMasterNguonGocPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "KhovtMasterNguonGocController.updateById"
+      },
+      "get": {
+        "x-controller-name": "KhovtMasterNguonGocController",
+        "x-operation-name": "findById",
+        "tags": ["KhovtMasterNguonGocController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterNguonGoc model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNguonGocWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNguonGoc.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterNguonGocController.findById"
+      },
+      "delete": {
+        "x-controller-name": "KhovtMasterNguonGocController",
+        "x-operation-name": "deleteById",
+        "tags": ["KhovtMasterNguonGocController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterNguonGoc DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "KhovtMasterNguonGocController.deleteById"
+      }
+    },
+    "/khovt-master-nguon-gocs": {
+      "post": {
+        "x-controller-name": "KhovtMasterNguonGocController",
+        "x-operation-name": "create",
+        "tags": ["KhovtMasterNguonGocController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterNguonGoc model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNguonGoc"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewKhovtMasterNguonGoc"
+              }
+            }
+          }
+        },
+        "operationId": "KhovtMasterNguonGocController.create"
+      },
+      "get": {
+        "x-controller-name": "KhovtMasterNguonGocController",
+        "x-operation-name": "find",
+        "tags": ["KhovtMasterNguonGocController"],
+        "responses": {
+          "200": {
+            "description": "Array of KhovtMasterNguonGoc model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KhovtMasterNguonGocWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNguonGoc.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterNguonGocController.find"
+      }
+    },
+    "/khovt-master-nhoms/count": {
+      "get": {
+        "x-controller-name": "KhovtNhomController",
+        "x-operation-name": "count",
+        "tags": ["KhovtNhomController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterNhom model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "KhovtMasterNhom.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<KhovtMasterNhom>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtNhomController.count"
+      }
+    },
+    "/khovt-master-nhoms/{id}": {
+      "patch": {
+        "x-controller-name": "KhovtNhomController",
+        "x-operation-name": "updateById",
+        "tags": ["KhovtNhomController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterNhom PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KhovtMasterNhomPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "KhovtNhomController.updateById"
+      },
+      "get": {
+        "x-controller-name": "KhovtNhomController",
+        "x-operation-name": "findById",
+        "tags": ["KhovtNhomController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterNhom model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNhomWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNhom.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtNhomController.findById"
+      },
+      "delete": {
+        "x-controller-name": "KhovtNhomController",
+        "x-operation-name": "deleteById",
+        "tags": ["KhovtNhomController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterNhom DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "KhovtNhomController.deleteById"
+      }
+    },
+    "/khovt-master-nhoms": {
+      "post": {
+        "x-controller-name": "KhovtNhomController",
+        "x-operation-name": "create",
+        "tags": ["KhovtNhomController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterNhom model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNhom"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewKhovtMasterNhom"
+              }
+            }
+          }
+        },
+        "operationId": "KhovtNhomController.create"
+      },
+      "get": {
+        "x-controller-name": "KhovtNhomController",
+        "x-operation-name": "find",
+        "tags": ["KhovtNhomController"],
+        "responses": {
+          "200": {
+            "description": "Array of KhovtMasterNhom model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KhovtMasterNhomWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterNhom.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtNhomController.find"
+      }
+    },
+    "/khovt-master-vts/count": {
+      "get": {
+        "x-controller-name": "KhovtMasterVtController",
+        "x-operation-name": "count",
+        "tags": ["KhovtMasterVtController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterVt model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "KhovtMasterVt.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<KhovtMasterVt>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterVtController.count"
+      }
+    },
+    "/khovt-master-vts/{id}": {
+      "patch": {
+        "x-controller-name": "KhovtMasterVtController",
+        "x-operation-name": "updateById",
+        "tags": ["KhovtMasterVtController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterVt PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KhovtMasterVtPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "KhovtMasterVtController.updateById"
+      },
+      "get": {
+        "x-controller-name": "KhovtMasterVtController",
+        "x-operation-name": "findById",
+        "tags": ["KhovtMasterVtController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterVt model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterVtWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterVt.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterVtController.findById"
+      },
+      "delete": {
+        "x-controller-name": "KhovtMasterVtController",
+        "x-operation-name": "deleteById",
+        "tags": ["KhovtMasterVtController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtMasterVt DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "KhovtMasterVtController.deleteById"
+      }
+    },
+    "/khovt-master-vts": {
+      "post": {
+        "x-controller-name": "KhovtMasterVtController",
+        "x-operation-name": "create",
+        "tags": ["KhovtMasterVtController"],
+        "responses": {
+          "200": {
+            "description": "KhovtMasterVt model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterVt"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewKhovtMasterVt"
+              }
+            }
+          }
+        },
+        "operationId": "KhovtMasterVtController.create"
+      },
+      "get": {
+        "x-controller-name": "KhovtMasterVtController",
+        "x-operation-name": "find",
+        "tags": ["KhovtMasterVtController"],
+        "responses": {
+          "200": {
+            "description": "Array of KhovtMasterVt model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KhovtMasterVtWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtMasterVt.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtMasterVtController.find"
+      }
+    },
+    "/khovt-trans-phieu-nhaps/count": {
+      "get": {
+        "x-controller-name": "KhovtTransPhieuNhapController",
+        "x-operation-name": "count",
+        "tags": ["KhovtTransPhieuNhapController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransPhieuNhap model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "KhovtTransPhieuNhap.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<KhovtTransPhieuNhap>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransPhieuNhapController.count"
+      }
+    },
+    "/khovt-trans-phieu-nhaps/{id}": {
+      "patch": {
+        "x-controller-name": "KhovtTransPhieuNhapController",
+        "x-operation-name": "updateById",
+        "tags": ["KhovtTransPhieuNhapController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtTransPhieuNhap PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KhovtTransPhieuNhapPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "KhovtTransPhieuNhapController.updateById"
+      },
+      "get": {
+        "x-controller-name": "KhovtTransPhieuNhapController",
+        "x-operation-name": "findById",
+        "tags": ["KhovtTransPhieuNhapController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransPhieuNhap model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuNhapWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuNhap.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransPhieuNhapController.findById"
+      },
+      "delete": {
+        "x-controller-name": "KhovtTransPhieuNhapController",
+        "x-operation-name": "deleteById",
+        "tags": ["KhovtTransPhieuNhapController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtTransPhieuNhap DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "KhovtTransPhieuNhapController.deleteById"
+      }
+    },
+    "/khovt-trans-phieu-nhaps": {
+      "post": {
+        "x-controller-name": "KhovtTransPhieuNhapController",
+        "x-operation-name": "create",
+        "tags": ["KhovtTransPhieuNhapController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransPhieuNhap model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuNhap"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewKhovtTransPhieuNhap"
+              }
+            }
+          }
+        },
+        "operationId": "KhovtTransPhieuNhapController.create"
+      },
+      "get": {
+        "x-controller-name": "KhovtTransPhieuNhapController",
+        "x-operation-name": "find",
+        "tags": ["KhovtTransPhieuNhapController"],
+        "responses": {
+          "200": {
+            "description": "Array of KhovtTransPhieuNhap model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KhovtTransPhieuNhapWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuNhap.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransPhieuNhapController.find"
+      }
+    },
+    "/khovt-trans-phieu-xuats/count": {
+      "get": {
+        "x-controller-name": "KhovtTransPhieuXuatController",
+        "x-operation-name": "count",
+        "tags": ["KhovtTransPhieuXuatController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransPhieuXuat model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "KhovtTransPhieuXuat.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<KhovtTransPhieuXuat>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransPhieuXuatController.count"
+      }
+    },
+    "/khovt-trans-phieu-xuats/{id}": {
+      "patch": {
+        "x-controller-name": "KhovtTransPhieuXuatController",
+        "x-operation-name": "updateById",
+        "tags": ["KhovtTransPhieuXuatController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtTransPhieuXuat PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KhovtTransPhieuXuatPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "KhovtTransPhieuXuatController.updateById"
+      },
+      "get": {
+        "x-controller-name": "KhovtTransPhieuXuatController",
+        "x-operation-name": "findById",
+        "tags": ["KhovtTransPhieuXuatController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransPhieuXuat model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuXuatWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuXuat.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransPhieuXuatController.findById"
+      },
+      "delete": {
+        "x-controller-name": "KhovtTransPhieuXuatController",
+        "x-operation-name": "deleteById",
+        "tags": ["KhovtTransPhieuXuatController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtTransPhieuXuat DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "KhovtTransPhieuXuatController.deleteById"
+      }
+    },
+    "/khovt-trans-phieu-xuats": {
+      "post": {
+        "x-controller-name": "KhovtTransPhieuXuatController",
+        "x-operation-name": "create",
+        "tags": ["KhovtTransPhieuXuatController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransPhieuXuat model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuXuat"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewKhovtTransPhieuXuat"
+              }
+            }
+          }
+        },
+        "operationId": "KhovtTransPhieuXuatController.create"
+      },
+      "get": {
+        "x-controller-name": "KhovtTransPhieuXuatController",
+        "x-operation-name": "find",
+        "tags": ["KhovtTransPhieuXuatController"],
+        "responses": {
+          "200": {
+            "description": "Array of KhovtTransPhieuXuat model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KhovtTransPhieuXuatWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransPhieuXuat.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransPhieuXuatController.find"
+      }
+    },
+    "/khovt-trans-thanh-khoans/count": {
+      "get": {
+        "x-controller-name": "KhovtTransThanhKhoanController",
+        "x-operation-name": "count",
+        "tags": ["KhovtTransThanhKhoanController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransThanhKhoan model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "KhovtTransThanhKhoan.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<KhovtTransThanhKhoan>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransThanhKhoanController.count"
+      }
+    },
+    "/khovt-trans-thanh-khoans/{id}": {
+      "patch": {
+        "x-controller-name": "KhovtTransThanhKhoanController",
+        "x-operation-name": "updateById",
+        "tags": ["KhovtTransThanhKhoanController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtTransThanhKhoan PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KhovtTransThanhKhoanPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "KhovtTransThanhKhoanController.updateById"
+      },
+      "get": {
+        "x-controller-name": "KhovtTransThanhKhoanController",
+        "x-operation-name": "findById",
+        "tags": ["KhovtTransThanhKhoanController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransThanhKhoan model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransThanhKhoanWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransThanhKhoan.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransThanhKhoanController.findById"
+      },
+      "delete": {
+        "x-controller-name": "KhovtTransThanhKhoanController",
+        "x-operation-name": "deleteById",
+        "tags": ["KhovtTransThanhKhoanController"],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "KhovtTransThanhKhoan DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "KhovtTransThanhKhoanController.deleteById"
+      }
+    },
+    "/khovt-trans-thanh-khoans": {
+      "post": {
+        "x-controller-name": "KhovtTransThanhKhoanController",
+        "x-operation-name": "create",
+        "tags": ["KhovtTransThanhKhoanController"],
+        "responses": {
+          "200": {
+            "description": "KhovtTransThanhKhoan model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransThanhKhoan"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewKhovtTransThanhKhoan"
+              }
+            }
+          }
+        },
+        "operationId": "KhovtTransThanhKhoanController.create"
+      },
+      "get": {
+        "x-controller-name": "KhovtTransThanhKhoanController",
+        "x-operation-name": "find",
+        "tags": ["KhovtTransThanhKhoanController"],
+        "responses": {
+          "200": {
+            "description": "Array of KhovtTransThanhKhoan model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KhovtTransThanhKhoanWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KhovtTransThanhKhoan.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "KhovtTransThanhKhoanController.find"
+      }
+    },
+    "/ping": {
+      "get": {
+        "x-controller-name": "PingController",
+        "x-operation-name": "ping",
+        "tags": ["PingController"],
+        "responses": {
+          "200": {
+            "description": "Ping Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PingController.ping"
+      }
+    },
+    "/users/login": {
+      "post": {
+        "x-controller-name": "AuthenticationController",
+        "x-operation-name": "login",
+        "tags": ["AuthenticationController"],
+        "responses": {
+          "200": {
+            "description": "Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialsWithRelations"
+              }
+            }
+          }
+        },
+        "operationId": "AuthenticationController.login"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://drc-pkh.pkhtech.buzz"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "KhovtTransThanhKhoan": {
+        "title": "KhovtTransThanhKhoan",
+        "type": "object",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "kiemKe": {
+            "type": "number",
+            "nullable": true
+          },
+          "kyThanhKhoan": {
+            "type": "string",
+            "nullable": false
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "soLo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "tonCuoiKy": {
+            "type": "number",
+            "nullable": true
+          },
+          "tonDauKy": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": ["kyThanhKhoan"],
+        "additionalProperties": false
+      },
+      "NewKhovtTransThanhKhoan": {
+        "title": "NewKhovtTransThanhKhoan",
+        "type": "object",
+        "description": "(tsType: Omit<KhovtTransThanhKhoan, 'id'>, schemaOptions: { title: 'NewKhovtTransThanhKhoan', exclude: [ 'id' ] })",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "kiemKe": {
+            "type": "number",
+            "nullable": true
+          },
+          "kyThanhKhoan": {
+            "type": "string",
+            "nullable": false
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "soLo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "tonCuoiKy": {
+            "type": "number",
+            "nullable": true
+          },
+          "tonDauKy": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": ["kyThanhKhoan"],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<KhovtTransThanhKhoan, 'id'>"
+      },
+      "KhovtTransThanhKhoanWithRelations": {
+        "title": "KhovtTransThanhKhoanWithRelations",
+        "type": "object",
+        "description": "(tsType: KhovtTransThanhKhoanWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "kiemKe": {
+            "type": "number",
+            "nullable": true
+          },
+          "kyThanhKhoan": {
+            "type": "string",
+            "nullable": false
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "soLo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "tonCuoiKy": {
+            "type": "number",
+            "nullable": true
+          },
+          "tonDauKy": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": ["kyThanhKhoan"],
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtTransThanhKhoanWithRelations"
+      },
+      "KhovtTransThanhKhoanPartial": {
+        "title": "KhovtTransThanhKhoanPartial",
+        "type": "object",
+        "description": "(tsType: Partial<KhovtTransThanhKhoan>, schemaOptions: { partial: true })",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "kiemKe": {
+            "type": "number",
+            "nullable": true
+          },
+          "kyThanhKhoan": {
+            "type": "string",
+            "nullable": false
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "soLo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": true
+          },
+          "tonCuoiKy": {
+            "type": "number",
+            "nullable": true
+          },
+          "tonDauKy": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<KhovtTransThanhKhoan>"
+      },
+      "KhovtTransPhieuXuat": {
+        "title": "KhovtTransPhieuXuat",
+        "type": "object",
+        "properties": {
+          "diDoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "khoNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "khoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayXuat": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiTaoPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "thongTinCanhBao": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewKhovtTransPhieuXuat": {
+        "title": "NewKhovtTransPhieuXuat",
+        "type": "object",
+        "description": "(tsType: Omit<KhovtTransPhieuXuat, 'id'>, schemaOptions: { title: 'NewKhovtTransPhieuXuat', exclude: [ 'id' ] })",
+        "properties": {
+          "diDoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "khoNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "khoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayXuat": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiTaoPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "thongTinCanhBao": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<KhovtTransPhieuXuat, 'id'>"
+      },
+      "KhovtTransPhieuXuatWithRelations": {
+        "title": "KhovtTransPhieuXuatWithRelations",
+        "type": "object",
+        "description": "(tsType: KhovtTransPhieuXuatWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "diDoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "khoNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "khoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayXuat": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiTaoPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "thongTinCanhBao": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtTransPhieuXuatWithRelations"
+      },
+      "KhovtTransPhieuXuatPartial": {
+        "title": "KhovtTransPhieuXuatPartial",
+        "type": "object",
+        "description": "(tsType: Partial<KhovtTransPhieuXuat>, schemaOptions: { partial: true })",
+        "properties": {
+          "diDoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "khoNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "khoXuat": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayXuat": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiTaoPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieu": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "thongTinCanhBao": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<KhovtTransPhieuXuat>"
+      },
+      "KhovtTransPhieuNhap": {
+        "title": "KhovtTransPhieuNhap",
+        "type": "object",
+        "properties": {
+          "donViNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayNhanKqtn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ngayNhap": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "soHoaDon": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieuNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "viTriLuuKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "xeVanChuyen": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewKhovtTransPhieuNhap": {
+        "title": "NewKhovtTransPhieuNhap",
+        "type": "object",
+        "description": "(tsType: Omit<KhovtTransPhieuNhap, 'id'>, schemaOptions: { title: 'NewKhovtTransPhieuNhap', exclude: [ 'id' ] })",
+        "properties": {
+          "donViNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayNhanKqtn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ngayNhap": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "soHoaDon": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieuNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "viTriLuuKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "xeVanChuyen": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<KhovtTransPhieuNhap, 'id'>"
+      },
+      "KhovtTransPhieuNhapWithRelations": {
+        "title": "KhovtTransPhieuNhapWithRelations",
+        "type": "object",
+        "description": "(tsType: KhovtTransPhieuNhapWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "donViNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayNhanKqtn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ngayNhap": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "soHoaDon": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieuNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "viTriLuuKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "xeVanChuyen": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtTransPhieuNhapWithRelations"
+      },
+      "KhovtTransPhieuNhapPartial": {
+        "title": "KhovtTransPhieuNhapPartial",
+        "type": "object",
+        "description": "(tsType: Partial<KhovtTransPhieuNhap>, schemaOptions: { partial: true })",
+        "properties": {
+          "donViNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "ngayNhanKqtn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ngayNhap": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nguoiNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "soHoaDon": {
+            "type": "string",
+            "nullable": true
+          },
+          "soPhieuNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeNhap": {
+            "type": "string",
+            "nullable": true
+          },
+          "viTriLuuKho": {
+            "type": "string",
+            "nullable": true
+          },
+          "xeVanChuyen": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<KhovtTransPhieuNhap>"
+      },
+      "KhovtMasterNhom": {
+        "title": "KhovtMasterNhom",
+        "type": "object",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenNhom": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maNhom", "tenNhom"],
+        "additionalProperties": false
+      },
+      "NewKhovtMasterNhom": {
+        "title": "NewKhovtMasterNhom",
+        "type": "object",
+        "description": "(tsType: Omit<KhovtMasterNhom, 'id'>, schemaOptions: { title: 'NewKhovtMasterNhom', exclude: [ 'id' ] })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenNhom": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maNhom", "tenNhom"],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<KhovtMasterNhom, 'id'>"
+      },
+      "KhovtMasterNhomWithRelations": {
+        "title": "KhovtMasterNhomWithRelations",
+        "type": "object",
+        "description": "(tsType: KhovtMasterNhomWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenNhom": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maNhom", "tenNhom"],
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtMasterNhomWithRelations"
+      },
+      "KhovtMasterNhomPartial": {
+        "title": "KhovtMasterNhomPartial",
+        "type": "object",
+        "description": "(tsType: Partial<KhovtMasterNhom>, schemaOptions: { partial: true })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenNhom": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<KhovtMasterNhom>"
+      },
+      "KhovtMasterVt": {
+        "title": "KhovtMasterVt",
+        "type": "object",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": false
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": true
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["dvt", "maVt", "tenVt"],
+        "additionalProperties": false
+      },
+      "NewKhovtMasterVt": {
+        "title": "NewKhovtMasterVt",
+        "type": "object",
+        "description": "(tsType: KhovtMasterVt, schemaOptions: { title: 'NewKhovtMasterVt' })",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": false
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": true
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["dvt", "maVt", "tenVt"],
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtMasterVt"
+      },
+      "KhovtMasterVtWithRelations": {
+        "title": "KhovtMasterVtWithRelations",
+        "type": "object",
+        "description": "(tsType: KhovtMasterVtWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": false
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": true
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["dvt", "maVt", "tenVt"],
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtMasterVtWithRelations"
+      },
+      "KhovtMasterVtPartial": {
+        "title": "KhovtMasterVtPartial",
+        "type": "object",
+        "description": "(tsType: Partial<KhovtMasterVt>, schemaOptions: { partial: true })",
+        "properties": {
+          "dvt": {
+            "type": "string",
+            "nullable": false
+          },
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maNhom": {
+            "type": "string",
+            "nullable": true
+          },
+          "maVt": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenVt": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<KhovtMasterVt>"
+      },
+      "KhovtMasterNguonGoc": {
+        "title": "KhovtMasterNguonGoc",
+        "type": "object",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maNguonGoc": {
+            "type": "string",
+            "nullable": false
+          },
+          "nuocId": {
+            "type": "number",
+            "nullable": false
+          },
+          "tenNhaSx": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maNguonGoc", "nuocId", "tenNhaSx"],
+        "additionalProperties": false
+      },
+      "NewKhovtMasterNguonGoc": {
+        "title": "NewKhovtMasterNguonGoc",
+        "type": "object",
+        "description": "(tsType: Omit<KhovtMasterNguonGoc, 'id'>, schemaOptions: { title: 'NewKhovtMasterNguonGoc', exclude: [ 'id' ] })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maNguonGoc": {
+            "type": "string",
+            "nullable": false
+          },
+          "nuocId": {
+            "type": "number",
+            "nullable": false
+          },
+          "tenNhaSx": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maNguonGoc", "nuocId", "tenNhaSx"],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<KhovtMasterNguonGoc, 'id'>"
+      },
+      "KhovtMasterNguonGocWithRelations": {
+        "title": "KhovtMasterNguonGocWithRelations",
+        "type": "object",
+        "description": "(tsType: KhovtMasterNguonGocWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maNguonGoc": {
+            "type": "string",
+            "nullable": false
+          },
+          "nuocId": {
+            "type": "number",
+            "nullable": false
+          },
+          "tenNhaSx": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maNguonGoc", "nuocId", "tenNhaSx"],
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtMasterNguonGocWithRelations"
+      },
+      "KhovtMasterNguonGocPartial": {
+        "title": "KhovtMasterNguonGocPartial",
+        "type": "object",
+        "description": "(tsType: Partial<KhovtMasterNguonGoc>, schemaOptions: { partial: true })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maNguonGoc": {
+            "type": "string",
+            "nullable": false
+          },
+          "nuocId": {
+            "type": "number",
+            "nullable": false
+          },
+          "tenNhaSx": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<KhovtMasterNguonGoc>"
+      },
+      "KhovtMasterKho": {
+        "title": "KhovtMasterKho",
+        "type": "object",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenKho": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maKho", "tenKho"],
+        "additionalProperties": false
+      },
+      "NewKhovtMasterKho": {
+        "title": "NewKhovtMasterKho",
+        "type": "object",
+        "description": "(tsType: Omit<KhovtMasterKho, 'id'>, schemaOptions: { title: 'NewKhovtMasterKho', exclude: [ 'id' ] })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenKho": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maKho", "tenKho"],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<KhovtMasterKho, 'id'>"
+      },
+      "KhovtMasterKhoWithRelations": {
+        "title": "KhovtMasterKhoWithRelations",
+        "type": "object",
+        "description": "(tsType: KhovtMasterKhoWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenKho": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": ["maKho", "tenKho"],
+        "additionalProperties": false,
+        "x-typescript-type": "KhovtMasterKhoWithRelations"
+      },
+      "KhovtMasterKhoPartial": {
+        "title": "KhovtMasterKhoPartial",
+        "type": "object",
+        "description": "(tsType: Partial<KhovtMasterKho>, schemaOptions: { partial: true })",
+        "properties": {
+          "ghiChu": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "maKho": {
+            "type": "string",
+            "nullable": false
+          },
+          "tenKho": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<KhovtMasterKho>"
+      },
+      "CredentialsWithRelations": {
+        "title": "CredentialsWithRelations",
+        "type": "object",
+        "description": "(tsType: CredentialsWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": ["email", "password"],
+        "additionalProperties": false,
+        "x-typescript-type": "CredentialsWithRelations"
+      },
+      "Credentials": {
+        "title": "Credentials",
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": ["email", "password"],
+        "additionalProperties": false
+      },
+      "loopback.Count": {
+        "type": "object",
+        "title": "loopback.Count",
+        "x-typescript-type": "@loopback/repository#Count",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "KhovtMasterKho.Filter": {
+        "type": "object",
+        "title": "KhovtMasterKho.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maKho": {
+                    "type": "boolean"
+                  },
+                  "tenKho": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["ghiChu", "id", "maKho", "tenKho"],
+                  "example": "ghiChu"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterKho.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterKho>"
+      },
+      "KhovtMasterKho.Filter1": {
+        "type": "object",
+        "title": "KhovtMasterKho.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "KhovtMasterKho.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maKho": {
+                    "type": "boolean"
+                  },
+                  "tenKho": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["ghiChu", "id", "maKho", "tenKho"],
+                  "example": "ghiChu"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterKho.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterKho>"
+      },
+      "KhovtMasterNguonGoc.Filter": {
+        "type": "object",
+        "title": "KhovtMasterNguonGoc.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maNguonGoc": {
+                    "type": "boolean"
+                  },
+                  "nuocId": {
+                    "type": "boolean"
+                  },
+                  "tenNhaSx": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["ghiChu", "id", "maNguonGoc", "nuocId", "tenNhaSx"],
+                  "example": "ghiChu"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterNguonGoc.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterNguonGoc>"
+      },
+      "KhovtMasterNguonGoc.Filter1": {
+        "type": "object",
+        "title": "KhovtMasterNguonGoc.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "KhovtMasterNguonGoc.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maNguonGoc": {
+                    "type": "boolean"
+                  },
+                  "nuocId": {
+                    "type": "boolean"
+                  },
+                  "tenNhaSx": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["ghiChu", "id", "maNguonGoc", "nuocId", "tenNhaSx"],
+                  "example": "ghiChu"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterNguonGoc.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterNguonGoc>"
+      },
+      "KhovtMasterNhom.Filter": {
+        "type": "object",
+        "title": "KhovtMasterNhom.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maNhom": {
+                    "type": "boolean"
+                  },
+                  "tenNhom": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["ghiChu", "id", "maNhom", "tenNhom"],
+                  "example": "ghiChu"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterNhom.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterNhom>"
+      },
+      "KhovtMasterNhom.Filter1": {
+        "type": "object",
+        "title": "KhovtMasterNhom.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "KhovtMasterNhom.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maNhom": {
+                    "type": "boolean"
+                  },
+                  "tenNhom": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["ghiChu", "id", "maNhom", "tenNhom"],
+                  "example": "ghiChu"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterNhom.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterNhom>"
+      },
+      "KhovtMasterVt.Filter": {
+        "type": "object",
+        "title": "KhovtMasterVt.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "dvt": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "maNhom": {
+                    "type": "boolean"
+                  },
+                  "maVt": {
+                    "type": "boolean"
+                  },
+                  "tenVt": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["dvt", "ghiChu", "maNhom", "maVt", "tenVt"],
+                  "example": "dvt"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterVt.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterVt>"
+      },
+      "KhovtMasterVt.Filter1": {
+        "type": "object",
+        "title": "KhovtMasterVt.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "KhovtMasterVt.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "dvt": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "maNhom": {
+                    "type": "boolean"
+                  },
+                  "maVt": {
+                    "type": "boolean"
+                  },
+                  "tenVt": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["dvt", "ghiChu", "maNhom", "maVt", "tenVt"],
+                  "example": "dvt"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtMasterVt.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtMasterVt>"
+      },
+      "KhovtTransPhieuNhap.Filter": {
+        "type": "object",
+        "title": "KhovtTransPhieuNhap.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "donViNhap": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maKho": {
+                    "type": "boolean"
+                  },
+                  "ngayNhanKqtn": {
+                    "type": "boolean"
+                  },
+                  "ngayNhap": {
+                    "type": "boolean"
+                  },
+                  "nguoiNhap": {
+                    "type": "boolean"
+                  },
+                  "soHoaDon": {
+                    "type": "boolean"
+                  },
+                  "soPhieuNhap": {
+                    "type": "boolean"
+                  },
+                  "typeNhap": {
+                    "type": "boolean"
+                  },
+                  "viTriLuuKho": {
+                    "type": "boolean"
+                  },
+                  "xeVanChuyen": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "donViNhap",
+                    "ghiChu",
+                    "id",
+                    "maKho",
+                    "ngayNhanKqtn",
+                    "ngayNhap",
+                    "nguoiNhap",
+                    "soHoaDon",
+                    "soPhieuNhap",
+                    "typeNhap",
+                    "viTriLuuKho",
+                    "xeVanChuyen"
+                  ],
+                  "example": "donViNhap"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtTransPhieuNhap.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtTransPhieuNhap>"
+      },
+      "KhovtTransPhieuNhap.Filter1": {
+        "type": "object",
+        "title": "KhovtTransPhieuNhap.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "KhovtTransPhieuNhap.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "donViNhap": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "maKho": {
+                    "type": "boolean"
+                  },
+                  "ngayNhanKqtn": {
+                    "type": "boolean"
+                  },
+                  "ngayNhap": {
+                    "type": "boolean"
+                  },
+                  "nguoiNhap": {
+                    "type": "boolean"
+                  },
+                  "soHoaDon": {
+                    "type": "boolean"
+                  },
+                  "soPhieuNhap": {
+                    "type": "boolean"
+                  },
+                  "typeNhap": {
+                    "type": "boolean"
+                  },
+                  "viTriLuuKho": {
+                    "type": "boolean"
+                  },
+                  "xeVanChuyen": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "donViNhap",
+                    "ghiChu",
+                    "id",
+                    "maKho",
+                    "ngayNhanKqtn",
+                    "ngayNhap",
+                    "nguoiNhap",
+                    "soHoaDon",
+                    "soPhieuNhap",
+                    "typeNhap",
+                    "viTriLuuKho",
+                    "xeVanChuyen"
+                  ],
+                  "example": "donViNhap"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtTransPhieuNhap.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtTransPhieuNhap>"
+      },
+      "KhovtTransPhieuXuat.Filter": {
+        "type": "object",
+        "title": "KhovtTransPhieuXuat.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "diDoXuat": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "khoNhap": {
+                    "type": "boolean"
+                  },
+                  "khoXuat": {
+                    "type": "boolean"
+                  },
+                  "ngayXuat": {
+                    "type": "boolean"
+                  },
+                  "nguoiTaoPhieu": {
+                    "type": "boolean"
+                  },
+                  "soPhieu": {
+                    "type": "boolean"
+                  },
+                  "status": {
+                    "type": "boolean"
+                  },
+                  "thongTinCanhBao": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "diDoXuat",
+                    "ghiChu",
+                    "id",
+                    "khoNhap",
+                    "khoXuat",
+                    "ngayXuat",
+                    "nguoiTaoPhieu",
+                    "soPhieu",
+                    "status",
+                    "thongTinCanhBao"
+                  ],
+                  "example": "diDoXuat"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtTransPhieuXuat.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtTransPhieuXuat>"
+      },
+      "KhovtTransPhieuXuat.Filter1": {
+        "type": "object",
+        "title": "KhovtTransPhieuXuat.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "KhovtTransPhieuXuat.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "diDoXuat": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "khoNhap": {
+                    "type": "boolean"
+                  },
+                  "khoXuat": {
+                    "type": "boolean"
+                  },
+                  "ngayXuat": {
+                    "type": "boolean"
+                  },
+                  "nguoiTaoPhieu": {
+                    "type": "boolean"
+                  },
+                  "soPhieu": {
+                    "type": "boolean"
+                  },
+                  "status": {
+                    "type": "boolean"
+                  },
+                  "thongTinCanhBao": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "diDoXuat",
+                    "ghiChu",
+                    "id",
+                    "khoNhap",
+                    "khoXuat",
+                    "ngayXuat",
+                    "nguoiTaoPhieu",
+                    "soPhieu",
+                    "status",
+                    "thongTinCanhBao"
+                  ],
+                  "example": "diDoXuat"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtTransPhieuXuat.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtTransPhieuXuat>"
+      },
+      "KhovtTransThanhKhoan.Filter": {
+        "type": "object",
+        "title": "KhovtTransThanhKhoan.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "dvt": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "kiemKe": {
+                    "type": "boolean"
+                  },
+                  "kyThanhKhoan": {
+                    "type": "boolean"
+                  },
+                  "maVt": {
+                    "type": "boolean"
+                  },
+                  "soLo": {
+                    "type": "boolean"
+                  },
+                  "tenVt": {
+                    "type": "boolean"
+                  },
+                  "tonCuoiKy": {
+                    "type": "boolean"
+                  },
+                  "tonDauKy": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "dvt",
+                    "ghiChu",
+                    "id",
+                    "kiemKe",
+                    "kyThanhKhoan",
+                    "maVt",
+                    "soLo",
+                    "tenVt",
+                    "tonCuoiKy",
+                    "tonDauKy"
+                  ],
+                  "example": "dvt"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtTransThanhKhoan.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtTransThanhKhoan>"
+      },
+      "KhovtTransThanhKhoan.Filter1": {
+        "type": "object",
+        "title": "KhovtTransThanhKhoan.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "KhovtTransThanhKhoan.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "dvt": {
+                    "type": "boolean"
+                  },
+                  "ghiChu": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "kiemKe": {
+                    "type": "boolean"
+                  },
+                  "kyThanhKhoan": {
+                    "type": "boolean"
+                  },
+                  "maVt": {
+                    "type": "boolean"
+                  },
+                  "soLo": {
+                    "type": "boolean"
+                  },
+                  "tenVt": {
+                    "type": "boolean"
+                  },
+                  "tonCuoiKy": {
+                    "type": "boolean"
+                  },
+                  "tonDauKy": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "dvt",
+                    "ghiChu",
+                    "id",
+                    "kiemKe",
+                    "kyThanhKhoan",
+                    "maVt",
+                    "soLo",
+                    "tenVt",
+                    "tonCuoiKy",
+                    "tonDauKy"
+                  ],
+                  "example": "dvt"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "KhovtTransThanhKhoan.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<KhovtTransThanhKhoan>"
+      },
+      "PingResponse": {
+        "type": "object",
+        "title": "PingResponse",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "Content-Type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwt": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "jwt": []
+    }
+  ]
+}
