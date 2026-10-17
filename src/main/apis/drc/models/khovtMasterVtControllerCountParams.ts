@@ -7,5 +7,5 @@
  */
 
 export type KhovtMasterVtControllerCountParams = {
-  where?: { [key: string]: unknown };
+where?: { [key: string]: unknown };
 };

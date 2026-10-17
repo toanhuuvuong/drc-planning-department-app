@@ -8,6 +8,4 @@
 import type { KhovtTransThanhKhoanFilter1FieldsOneOf } from './khovtTransThanhKhoanFilter1FieldsOneOf';
 import type { KhovtTransThanhKhoanFilter1FieldsOneOfTwoItem } from './khovtTransThanhKhoanFilter1FieldsOneOfTwoItem';
 
-export type KhovtTransThanhKhoanFilter1Fields =
-  | KhovtTransThanhKhoanFilter1FieldsOneOf
-  | KhovtTransThanhKhoanFilter1FieldsOneOfTwoItem[];
+export type KhovtTransThanhKhoanFilter1Fields = KhovtTransThanhKhoanFilter1FieldsOneOf | KhovtTransThanhKhoanFilter1FieldsOneOfTwoItem[];

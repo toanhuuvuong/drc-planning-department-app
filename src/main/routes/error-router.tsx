@@ -1,3 +1,4 @@
+import AccessDenied from 'main/components/pages/error/access-denied';
 import SystemError from 'main/components/pages/error/system-error';
 import UrlNotFound from 'main/components/pages/error/url-not-found';
 import ErrorLayout from 'main/layouts/error';
@@ -7,6 +8,7 @@ const errorRouter = (
   <Route path="/error/*" element={<ErrorLayout />}>
     <Route path="system-error" element={<SystemError />} />
     <Route path="url-not-found" element={<UrlNotFound />} />
+    <Route path="access-denied" element={<AccessDenied />} />
   </Route>
 );
 

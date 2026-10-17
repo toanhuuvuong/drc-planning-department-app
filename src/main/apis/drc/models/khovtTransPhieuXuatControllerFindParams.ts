@@ -5,8 +5,8 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import type { KhovtTransPhieuXuatFilter1 } from './khovtTransPhieuXuatFilter1';
+import type { KhovtTransPhieuXuatFilter } from './khovtTransPhieuXuatFilter';
 
 export type KhovtTransPhieuXuatControllerFindParams = {
-  filter?: KhovtTransPhieuXuatFilter1;
+filter?: KhovtTransPhieuXuatFilter;
 };

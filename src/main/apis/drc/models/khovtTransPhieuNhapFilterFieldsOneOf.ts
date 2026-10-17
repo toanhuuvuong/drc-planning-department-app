@@ -7,16 +7,20 @@
  */
 
 export type KhovtTransPhieuNhapFilterFieldsOneOf = {
+  createTime?: boolean;
+  createUser?: boolean;
   donViNhap?: boolean;
   ghiChu?: boolean;
   id?: boolean;
   maKho?: boolean;
-  ngayNhanKqtn?: boolean;
+  ngayHoaDon?: boolean;
   ngayNhap?: boolean;
   nguoiNhap?: boolean;
   soHoaDon?: boolean;
   soPhieuNhap?: boolean;
   typeNhap?: boolean;
+  updateTime?: boolean;
+  updateUser?: boolean;
   viTriLuuKho?: boolean;
   xeVanChuyen?: boolean;
 };

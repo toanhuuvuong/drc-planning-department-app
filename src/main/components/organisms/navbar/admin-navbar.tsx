@@ -1,4 +1,7 @@
 import classnames from 'classnames';
+import page from 'main/constants/page';
+import { useAuth } from 'main/hooks';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Collapse,
   Container,
@@ -6,15 +9,9 @@ import {
   DropdownMenu,
   DropdownToggle,
   Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
   Media,
   Nav,
   NavItem,
-  NavLink,
   Navbar,
   UncontrolledDropdown,
 } from 'reactstrap';
@@ -25,33 +22,45 @@ type Props = {
   toggleSidenav: () => void;
 };
 
-function AdminNavbar({ theme = 'dark', sidenavOpen = false, toggleSidenav = () => {} }: Props) {
-  // function that on mobile devices makes the search open
-  const openSearch = () => {
-    document.body.classList.add('g-navbar-search-showing');
-    setTimeout(function () {
-      document.body.classList.remove('g-navbar-search-showing');
-      document.body.classList.add('g-navbar-search-show');
-    }, 150);
-    setTimeout(function () {
-      document.body.classList.add('g-navbar-search-shown');
-    }, 300);
+function AdminNavbar({
+  theme = 'dark',
+  sidenavOpen = false,
+  toggleSidenav = () => {
+    // do nothing
+  },
+}: Readonly<Props>) {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const location = useLocation();
+
+  // Function to get current page category
+  const getCurrentPageTitle = () => {
+    // Get the current path without query parameters
+    const currentPath = location.pathname;
+
+    // Find the matching page in the page constant
+    const pageEntries = Object.entries(page);
+    for (const [key, value] of pageEntries) {
+      if (value.PATH === currentPath) {
+        return 'TITLE' in value && value.TITLE ? value.TITLE : 'Phòng kế hoạch - CÔNG TY CỔ PHẦN CAO SU ĐÀ NẴNG (DRC)';
+      }
+    }
+
+    // If no exact match, try to match with paths that might have additional segments
+    for (const [key, value] of pageEntries) {
+      if (currentPath.startsWith(value.PATH) && value.PATH !== '/') {
+        return 'TITLE' in value && value.TITLE ? value.TITLE : 'Phòng kế hoạch - CÔNG TY CỔ PHẦN CAO SU ĐÀ NẴNG (DRC)';
+      }
+    }
+
+    // Return default if no match found
+    return 'Phòng kế hoạch - CÔNG TY CỔ PHẦN CAO SU ĐÀ NẴNG (DRC)';
   };
 
-  // function that on mobile devices makes the search close
-  const closeSearch = () => {
-    document.body.classList.remove('g-navbar-search-shown');
-    setTimeout(function () {
-      document.body.classList.remove('g-navbar-search-show');
-      document.body.classList.add('g-navbar-search-hiding');
-    }, 150);
-    setTimeout(function () {
-      document.body.classList.remove('g-navbar-search-hiding');
-      document.body.classList.add('g-navbar-search-hidden');
-    }, 300);
-    setTimeout(function () {
-      document.body.classList.remove('g-navbar-search-hidden');
-    }, 500);
+  const handleLogout = () => {
+    logout();
+    navigate(page.LOGIN.PATH);
   };
 
   return (
@@ -69,19 +78,7 @@ function AdminNavbar({ theme = 'dark', sidenavOpen = false, toggleSidenav = () =
               { 'navbar-search-light': theme === 'dark' },
               { 'navbar-search-dark': theme === 'light' },
             )}>
-            <FormGroup className="mb-0">
-              <InputGroup className="input-group-alternative input-group-merge">
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="fas fa-search" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input placeholder="Tìm kiếm" type="text" />
-              </InputGroup>
-            </FormGroup>
-            <button aria-label="Close" className="close" type="button" onClick={closeSearch}>
-              <span aria-hidden={true}>×</span>
-            </button>
+            <h2 className="text-white">{getCurrentPageTitle()}</h2>
           </Form>
 
           <Nav className="align-items-center ml-md-auto" navbar>
@@ -100,49 +97,38 @@ function AdminNavbar({ theme = 'dark', sidenavOpen = false, toggleSidenav = () =
                 </div>
               </div>
             </NavItem>
-            <NavItem className="d-sm-none">
-              <NavLink onClick={openSearch}>
-                <i className="ni ni-zoom-split-in" />
-              </NavLink>
-            </NavItem>
           </Nav>
 
           <Nav className="align-items-center ml-auto ml-md-0" navbar>
             <UncontrolledDropdown nav>
-              <DropdownToggle className="nav-link pr-0" color="" tag="a">
-                <Media className="align-items-center">
-                  <span className="avatar avatar-sm rounded-circle">
-                    <img alt="..." src={require('template/assets/img/theme/team-4.jpg')} />
-                  </span>
-                  <Media className="ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-weight-bold">Vương Hữu Toàn</span>
+              <DropdownToggle className="nav-link pr-0 cursor-pointer" color="" tag="a">
+                <summary aria-expanded="true">
+                  <Media className="align-items-center">
+                    <span className="avatar avatar-sm rounded-circle">
+                      <img alt="avatar" src={`${process.env.PUBLIC_URL}/assets/img/logo-drc.png`} />
+                    </span>
+                    <Media className="ml-2 d-none d-lg-block">
+                      <span className="mb-0 text-sm font-weight-bold">{currentUser.username?.toUpperCase()}</span>
+                    </Media>
                   </Media>
-                </Media>
+                </summary>
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem className="noti-title" header tag="div">
                   <h6 className="text-overflow m-0">Xin chào!</h6>
                 </DropdownItem>
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                <DropdownItem onClick={(e) => navigate(page.MY_PROFILE.PATH)}>
                   <i className="ni ni-single-02" />
                   <span>Thông tin của tôi</span>
                 </DropdownItem>
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                  <i className="ni ni-settings-gear-65" />
-                  <span>Thiết lập</span>
-                </DropdownItem>
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                  <i className="ni ni-calendar-grid-58" />
-                  <span>Hoạt động</span>
-                </DropdownItem>
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                <DropdownItem onClick={(e) => e.preventDefault()}>
                   <i className="ni ni-support-16" />
                   <span>Hỗ trợ</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                <DropdownItem onClick={(e) => e.preventDefault()}>
                   <i className="ni ni-user-run" />
-                  <span>Đăng xuất</span>
+                  <span onClick={handleLogout}>Đăng xuất</span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

@@ -7,5 +7,5 @@
  */
 
 export type KhovtTransPhieuNhapControllerCountParams = {
-  where?: { [key: string]: unknown };
+where?: { [key: string]: unknown };
 };

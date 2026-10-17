@@ -7,5 +7,5 @@
  */
 
 export type KhovtNhomControllerCountParams = {
-  where?: { [key: string]: unknown };
+where?: { [key: string]: unknown };
 };

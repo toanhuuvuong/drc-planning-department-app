@@ -7,8 +7,12 @@
  */
 
 export type KhovtMasterNhomFilterFieldsOneOf = {
+  createTime?: boolean;
+  createUser?: boolean;
   ghiChu?: boolean;
   id?: boolean;
   maNhom?: boolean;
   tenNhom?: boolean;
+  updateTime?: boolean;
+  updateUser?: boolean;
 };

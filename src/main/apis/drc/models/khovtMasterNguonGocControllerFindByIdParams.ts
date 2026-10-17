@@ -8,5 +8,5 @@
 import type { KhovtMasterNguonGocFilter } from './khovtMasterNguonGocFilter';
 
 export type KhovtMasterNguonGocControllerFindByIdParams = {
-  filter?: KhovtMasterNguonGocFilter;
+filter?: KhovtMasterNguonGocFilter;
 };

@@ -1,0 +1,118 @@
+.disable-gray {
+  background-color: #e0e0e0 !important; /* Slightly lighter gray */
+  color: #555 !important; /* Darker text for readability */
+  font-style: italic; /* Indicate non-editable */
+}
+
+.custom-pagination p {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.error-cell {
+  background-color: #ffebee !important; /* Keep error background */
+  color: #d32f2f !important; /* Keep error text color */
+  /* Add a subtle border or icon */
+  /* border: 1px solid #d32f2f !important; */
+}
+
+/* Style for editable cells (can be used alongside sx props) */
+.editable-cell {
+  /* Optional: Add a subtle background or indicator for editable cells */
+  /* background-color: #f0f8ff; */
+}
+
+/* Remove padding specifically from editable cells (custom class) */
+.MuiDataGrid-cell.editable-cell {
+  padding: 0 !important;
+}
+
+/* Remove padding specifically from MUI's default editable cells */
+.MuiDataGrid-cell.MuiDataGrid-cell--editable {
+  padding: 0 !important;
+}
+
+/* Remove padding from cells containing specific components like Autocomplete or DatePicker */
+.no-padding {
+  padding: 0 !important;
+}
+
+/* Ensure components inside no-padding cells fill the height */
+.no-padding > * {
+  height: 100%;
+}
+
+/* Specific overrides if sx props are not sufficient */
+.MuiDataGrid-root {
+  /* Override any conflicting root styles */
+}
+
+/* Ensure text inputs within cells align properly */
+.MuiDataGrid-cell .MuiInputBase-input {
+  line-height: normal; /* Reset line-height if needed */
+  padding-top: 0 !important; /* Fine-tune padding */
+  padding-bottom: 0 !important;
+  /* Adjust horizontal padding if cell padding is removed */
+  padding-left: 8px !important; 
+  padding-right: 8px !important;
+}
+
+/* Style for Reactstrap Inputs if used within renderCell */
+.MuiDataGrid-cell .form-group {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0 !important; /* Remove default margin */
+}
+
+.MuiDataGrid-cell .form-control {
+  width: 100%;
+  height: 100%;
+  border: none; /* Remove default bootstrap border */
+  border-radius: 0; /* Remove border-radius */
+  padding: 0 8px !important; /* Match cell padding, adjust if needed */
+  font-size: inherit; /* Inherit font size */
+  font-family: inherit; /* Inherit font family */
+  background-color: transparent; /* Make background transparent */
+  box-shadow: none !important; /* Remove focus shadow */
+}
+
+.MuiDataGrid-cell .form-control:focus {
+  background-color: #fff; /* White background on focus/edit */
+  outline: 1px solid #0078d4; /* Excel-like edit outline */
+  outline-offset: -1px;
+  border: none; /* Ensure no other border interferes on focus */
+}
+
+/* Explicit style for invalid Reactstrap Inputs within grid cells */
+.MuiDataGrid-cell .form-control.is-invalid {
+  border: 1px solid #dc3545 !important; /* Red border for invalid state */
+  background-color: #fff; /* Ensure background is white */
+   /* Adjust padding to account for border when cell padding is 0 */
+  padding: 0 calc(8px - 1px) !important; 
+}
+
+/* Ensure focus style overrides invalid style if needed, or combines */
+.MuiDataGrid-cell .form-control.is-invalid:focus {
+   /* Keep red border on focus if invalid */
+  border-color: #dc3545 !important;
+  /* Optionally keep the blue outline as well */
+  outline: 1px solid #0078d4; 
+  outline-offset: -1px; 
+  box-shadow: none !important; 
+}
+
+/* Style for DatePicker inputs */
+.MuiDataGrid-cell .custom-datepicker {
+  width: 100%;
+  height: 100%;
+}
+
+.MuiDataGrid-cell .custom-datepicker .MuiInputBase-root {
+  height: 100%;
+}
+
+.MuiDataGrid-cell .custom-datepicker .MuiInputBase-input {
+  padding: 0 8px !important; /* Match cell padding */
+  height: 100% !important;
+  box-sizing: border-box;
+}

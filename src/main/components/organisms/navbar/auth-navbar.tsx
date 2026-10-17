@@ -6,7 +6,7 @@ function AuthNavbar() {
     <Navbar className="navbar-horizontal navbar-main navbar-dark navbar-transparent" expand="lg" id="navbar-main">
       <Container>
         <NavbarBrand to="/" tag={Link}>
-          <img alt="..." src={require('template/assets/img/brand/argon-react-white.png')} />
+          <img alt="DRC logo" src={`${process.env.PUBLIC_URL}/assets/img/logo-drc.png`} />
         </NavbarBrand>
         <button
           aria-controls="navbar-collapse"
@@ -23,8 +23,8 @@ function AuthNavbar() {
           <div className="navbar-collapse-header">
             <Row>
               <Col className="collapse-brand" xs="6">
-                <Link to="/admin/dashboard">
-                  <img alt="..." src={require('template/assets/img/brand/blue.png')} />
+                <Link to="/">
+                  <img alt="DRC logo" src={`${process.env.PUBLIC_URL}/assets/img/logo-drc.png`} />
                 </Link>
               </Col>
               <Col className="collapse-close" xs="6">
@@ -47,11 +47,6 @@ function AuthNavbar() {
             <NavItem>
               <NavLink to="/auth/login" tag={Link}>
                 <span className="nav-link-inner--text">Đăng nhập</span>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/auth/register" tag={Link}>
-                <span className="nav-link-inner--text">Đăng ký</span>
               </NavLink>
             </NavItem>
           </Nav>

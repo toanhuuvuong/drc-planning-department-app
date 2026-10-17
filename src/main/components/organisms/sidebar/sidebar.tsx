@@ -23,7 +23,15 @@ type Props = {
   rtlActive?: boolean;
 };
 
-function Sidebar({ toggleSidenav = () => {}, sidenavOpen = false, routes, logo, rtlActive = false }: Props) {
+function Sidebar({
+  toggleSidenav = () => {
+    // do nothing
+  },
+  sidenavOpen = false,
+  routes,
+  logo,
+  rtlActive = false,
+}: Props) {
   const [state, setState] = React.useState({});
   const location = useLocation();
 

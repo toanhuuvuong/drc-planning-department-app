@@ -5,71 +5,132 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { useMutation } from '@tanstack/react-query';
-import type { MutationFunction, UseMutationOptions, UseMutationResult } from '@tanstack/react-query';
-import type { AuthenticationControllerLogin200, CredentialsWithRelations } from '../../models';
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query'
+import type {
+  MutationFunction,
+  QueryFunction,
+  QueryKey,
+  UseMutationOptions,
+  UseMutationResult,
+  UseQueryOptions,
+  UseQueryResult
+} from '@tanstack/react-query'
+import type {
+  AuthUserInformation,
+  AuthUserInformationExcludingToken,
+  Credentials
+} from '../../models'
 import { drcInstance } from '../../../configs/mutator/drc-instance';
 import type { ErrorType } from '../../../configs/mutator/drc-instance';
 
-export const authenticationControllerLogin = (credentialsWithRelations: CredentialsWithRelations) => {
-  return drcInstance<AuthenticationControllerLogin200>({
-    url: `/users/login`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: credentialsWithRelations,
-  });
-};
 
-export const getAuthenticationControllerLoginMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof authenticationControllerLogin>>,
-    TError,
-    { data: CredentialsWithRelations },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof authenticationControllerLogin>>,
-  TError,
-  { data: CredentialsWithRelations },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof authenticationControllerLogin>>,
-    { data: CredentialsWithRelations }
-  > = (props) => {
-    const { data } = props ?? {};
+export const authenticationControllerLogin = (
+    credentials: Credentials,
+ ) => {
+      
+      
+      return drcInstance<AuthUserInformation>(
+      {url: `/users/login`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: credentials
+    },
+      );
+    }
+  
 
-    return authenticationControllerLogin(data);
-  };
 
-  return { mutationFn, ...mutationOptions };
-};
+export const getAuthenticationControllerLoginMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authenticationControllerLogin>>, TError,{data: Credentials}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof authenticationControllerLogin>>, TError,{data: Credentials}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
 
-export type AuthenticationControllerLoginMutationResult = NonNullable<
-  Awaited<ReturnType<typeof authenticationControllerLogin>>
->;
-export type AuthenticationControllerLoginMutationBody = CredentialsWithRelations;
-export type AuthenticationControllerLoginMutationError = ErrorType<unknown>;
+      
 
-export const useAuthenticationControllerLogin = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof authenticationControllerLogin>>,
-    TError,
-    { data: CredentialsWithRelations },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof authenticationControllerLogin>>,
-  TError,
-  { data: CredentialsWithRelations },
-  TContext
-> => {
-  const mutationOptions = getAuthenticationControllerLoginMutationOptions(options);
 
-  return useMutation(mutationOptions);
-};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authenticationControllerLogin>>, {data: Credentials}> = (props) => {
+          const {data} = props ?? {};
+
+          return  authenticationControllerLogin(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthenticationControllerLoginMutationResult = NonNullable<Awaited<ReturnType<typeof authenticationControllerLogin>>>
+    export type AuthenticationControllerLoginMutationBody = Credentials
+    export type AuthenticationControllerLoginMutationError = ErrorType<unknown>
+
+    export const useAuthenticationControllerLogin = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authenticationControllerLogin>>, TError,{data: Credentials}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof authenticationControllerLogin>>,
+        TError,
+        {data: Credentials},
+        TContext
+      > => {
+
+      const mutationOptions = getAuthenticationControllerLoginMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const authenticationControllerFetchByToken = (
+    id: number,
+ signal?: AbortSignal
+) => {
+      
+      
+      return drcInstance<AuthUserInformationExcludingToken>(
+      {url: `/users/${id}/fetch-by-token`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+export const getAuthenticationControllerFetchByTokenQueryKey = (id: number,) => {
+    return [`/users/${id}/fetch-by-token`] as const;
+    }
+
+    
+export const getAuthenticationControllerFetchByTokenQueryOptions = <TData = Awaited<ReturnType<typeof authenticationControllerFetchByToken>>, TError = ErrorType<unknown>>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authenticationControllerFetchByToken>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAuthenticationControllerFetchByTokenQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof authenticationControllerFetchByToken>>> = ({ signal }) => authenticationControllerFetchByToken(id, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof authenticationControllerFetchByToken>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type AuthenticationControllerFetchByTokenQueryResult = NonNullable<Awaited<ReturnType<typeof authenticationControllerFetchByToken>>>
+export type AuthenticationControllerFetchByTokenQueryError = ErrorType<unknown>
+
+export const useAuthenticationControllerFetchByToken = <TData = Awaited<ReturnType<typeof authenticationControllerFetchByToken>>, TError = ErrorType<unknown>>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authenticationControllerFetchByToken>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getAuthenticationControllerFetchByTokenQueryOptions(id,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+

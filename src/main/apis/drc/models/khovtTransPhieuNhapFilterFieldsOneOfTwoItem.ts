@@ -6,8 +6,8 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type KhovtTransPhieuNhapFilterFieldsOneOfTwoItem =
-  (typeof KhovtTransPhieuNhapFilterFieldsOneOfTwoItem)[keyof typeof KhovtTransPhieuNhapFilterFieldsOneOfTwoItem];
+export type KhovtTransPhieuNhapFilterFieldsOneOfTwoItem = typeof KhovtTransPhieuNhapFilterFieldsOneOfTwoItem[keyof typeof KhovtTransPhieuNhapFilterFieldsOneOfTwoItem];
+
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const KhovtTransPhieuNhapFilterFieldsOneOfTwoItem = {
@@ -15,7 +15,7 @@ export const KhovtTransPhieuNhapFilterFieldsOneOfTwoItem = {
   ghiChu: 'ghiChu',
   id: 'id',
   maKho: 'maKho',
-  ngayNhanKqtn: 'ngayNhanKqtn',
+  ngayHoaDon: 'ngayHoaDon',
   ngayNhap: 'ngayNhap',
   nguoiNhap: 'nguoiNhap',
   soHoaDon: 'soHoaDon',
@@ -23,4 +23,8 @@ export const KhovtTransPhieuNhapFilterFieldsOneOfTwoItem = {
   typeNhap: 'typeNhap',
   viTriLuuKho: 'viTriLuuKho',
   xeVanChuyen: 'xeVanChuyen',
+  createTime: 'createTime',
+  updateTime: 'updateTime',
+  createUser: 'createUser',
+  updateUser: 'updateUser',
 } as const;

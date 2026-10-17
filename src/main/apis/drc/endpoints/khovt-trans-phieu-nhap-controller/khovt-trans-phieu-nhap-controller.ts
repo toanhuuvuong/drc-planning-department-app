@@ -5,7 +5,10 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query'
 import type {
   MutationFunction,
   QueryFunction,
@@ -13,388 +16,452 @@ import type {
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
+  UseQueryResult
+} from '@tanstack/react-query'
 import type {
-  KhovtTransPhieuNhap,
+  CreatePhieuNhapRequest,
+  CreatePhieuNhapRequestPartial,
   KhovtTransPhieuNhapControllerCountParams,
-  KhovtTransPhieuNhapControllerFindByIdParams,
+  KhovtTransPhieuNhapControllerFindDetail200,
+  KhovtTransPhieuNhapControllerFindDetailParams,
   KhovtTransPhieuNhapControllerFindParams,
-  KhovtTransPhieuNhapPartial,
+  KhovtTransPhieuNhapControllerGetNextMaSoLoParams,
   KhovtTransPhieuNhapWithRelations,
-  LoopbackCount,
-  NewKhovtTransPhieuNhap,
-} from '../../models';
+  LoopbackCount
+} from '../../models'
 import { drcInstance } from '../../../configs/mutator/drc-instance';
 import type { ErrorType } from '../../../configs/mutator/drc-instance';
 
+
+
 export const khovtTransPhieuNhapControllerCount = (
-  params?: KhovtTransPhieuNhapControllerCountParams,
-  signal?: AbortSignal,
+    params?: KhovtTransPhieuNhapControllerCountParams,
+ signal?: AbortSignal
 ) => {
-  return drcInstance<LoopbackCount>({ url: `/khovt-trans-phieu-nhaps/count`, method: 'GET', params, signal });
-};
+      
+      
+      return drcInstance<LoopbackCount>(
+      {url: `/khovt-trans-phieu-nhaps/count`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-export const getKhovtTransPhieuNhapControllerCountQueryKey = (params?: KhovtTransPhieuNhapControllerCountParams) => {
-  return [`/khovt-trans-phieu-nhaps/count`, ...(params ? [params] : [])] as const;
-};
+export const getKhovtTransPhieuNhapControllerCountQueryKey = (params?: KhovtTransPhieuNhapControllerCountParams,) => {
+    return [`/khovt-trans-phieu-nhaps/count`, ...(params ? [params]: [])] as const;
+    }
 
-export const getKhovtTransPhieuNhapControllerCountQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtTransPhieuNhapControllerCountParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>, TError, TData>>;
-  },
+    
+export const getKhovtTransPhieuNhapControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>, TError = ErrorType<unknown>>(params?: KhovtTransPhieuNhapControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>, TError, TData>>, }
 ) => {
-  const { query: queryOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerCountQueryKey(params);
+const {query: queryOptions} = options ?? {};
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>> = ({ signal }) =>
-    khovtTransPhieuNhapControllerCount(params, signal);
+  const queryKey =  queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerCountQueryKey(params);
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+  
 
-export type KhovtTransPhieuNhapControllerCountQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>
->;
-export type KhovtTransPhieuNhapControllerCountQueryError = ErrorType<unknown>;
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>> = ({ signal }) => khovtTransPhieuNhapControllerCount(params, signal);
 
-export const useKhovtTransPhieuNhapControllerCount = <
-  TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtTransPhieuNhapControllerCountParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtTransPhieuNhapControllerCountQueryOptions(params, options);
+      
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+      
 
-  query.queryKey = queryOptions.queryKey;
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtTransPhieuNhapControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>>
+export type KhovtTransPhieuNhapControllerCountQueryError = ErrorType<unknown>
+
+export const useKhovtTransPhieuNhapControllerCount = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>, TError = ErrorType<unknown>>(
+ params?: KhovtTransPhieuNhapControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCount>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtTransPhieuNhapControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
+
+
+
+export const khovtTransPhieuNhapControllerGetNextMaSoLo = (
+    params?: KhovtTransPhieuNhapControllerGetNextMaSoLoParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return drcInstance<string>(
+      {url: `/khovt-trans-phieu-nhaps/next-ma-so-lo`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+export const getKhovtTransPhieuNhapControllerGetNextMaSoLoQueryKey = (params?: KhovtTransPhieuNhapControllerGetNextMaSoLoParams,) => {
+    return [`/khovt-trans-phieu-nhaps/next-ma-so-lo`, ...(params ? [params]: [])] as const;
+    }
+
+    
+export const getKhovtTransPhieuNhapControllerGetNextMaSoLoQueryOptions = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerGetNextMaSoLo>>, TError = ErrorType<unknown>>(params?: KhovtTransPhieuNhapControllerGetNextMaSoLoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerGetNextMaSoLo>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerGetNextMaSoLoQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerGetNextMaSoLo>>> = ({ signal }) => khovtTransPhieuNhapControllerGetNextMaSoLo(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerGetNextMaSoLo>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtTransPhieuNhapControllerGetNextMaSoLoQueryResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerGetNextMaSoLo>>>
+export type KhovtTransPhieuNhapControllerGetNextMaSoLoQueryError = ErrorType<unknown>
+
+export const useKhovtTransPhieuNhapControllerGetNextMaSoLo = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerGetNextMaSoLo>>, TError = ErrorType<unknown>>(
+ params?: KhovtTransPhieuNhapControllerGetNextMaSoLoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerGetNextMaSoLo>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtTransPhieuNhapControllerGetNextMaSoLoQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const khovtTransPhieuNhapControllerFindDetail = (
+    params?: KhovtTransPhieuNhapControllerFindDetailParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return drcInstance<KhovtTransPhieuNhapControllerFindDetail200>(
+      {url: `/khovt-trans-phieu-nhaps/search-details`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+export const getKhovtTransPhieuNhapControllerFindDetailQueryKey = (params?: KhovtTransPhieuNhapControllerFindDetailParams,) => {
+    return [`/khovt-trans-phieu-nhaps/search-details`, ...(params ? [params]: [])] as const;
+    }
+
+    
+export const getKhovtTransPhieuNhapControllerFindDetailQueryOptions = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindDetail>>, TError = ErrorType<unknown>>(params?: KhovtTransPhieuNhapControllerFindDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindDetail>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerFindDetailQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindDetail>>> = ({ signal }) => khovtTransPhieuNhapControllerFindDetail(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindDetail>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtTransPhieuNhapControllerFindDetailQueryResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindDetail>>>
+export type KhovtTransPhieuNhapControllerFindDetailQueryError = ErrorType<unknown>
+
+export const useKhovtTransPhieuNhapControllerFindDetail = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindDetail>>, TError = ErrorType<unknown>>(
+ params?: KhovtTransPhieuNhapControllerFindDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindDetail>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtTransPhieuNhapControllerFindDetailQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
 
 export const khovtTransPhieuNhapControllerUpdateById = (
-  id: number,
-  khovtTransPhieuNhapPartial: KhovtTransPhieuNhapPartial,
+    id: number,
+    createPhieuNhapRequestPartial: CreatePhieuNhapRequestPartial,
+ ) => {
+      
+      
+      return drcInstance<KhovtTransPhieuNhapWithRelations>(
+      {url: `/khovt-trans-phieu-nhaps/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: createPhieuNhapRequestPartial
+    },
+      );
+    }
+  
+
+
+export const getKhovtTransPhieuNhapControllerUpdateByIdMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>, TError,{id: number;data: CreatePhieuNhapRequestPartial}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>, TError,{id: number;data: CreatePhieuNhapRequestPartial}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>, {id: number;data: CreatePhieuNhapRequestPartial}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  khovtTransPhieuNhapControllerUpdateById(id,data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type KhovtTransPhieuNhapControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>>
+    export type KhovtTransPhieuNhapControllerUpdateByIdMutationBody = CreatePhieuNhapRequestPartial
+    export type KhovtTransPhieuNhapControllerUpdateByIdMutationError = ErrorType<unknown>
+
+    export const useKhovtTransPhieuNhapControllerUpdateById = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>, TError,{id: number;data: CreatePhieuNhapRequestPartial}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>,
+        TError,
+        {id: number;data: CreatePhieuNhapRequestPartial},
+        TContext
+      > => {
+
+      const mutationOptions = getKhovtTransPhieuNhapControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const khovtTransPhieuNhapControllerFindById = (
+    id: number,
+ signal?: AbortSignal
 ) => {
-  return drcInstance<unknown>({
-    url: `/khovt-trans-phieu-nhaps/${id}`,
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    data: khovtTransPhieuNhapPartial,
-  });
-};
+      
+      
+      return drcInstance<KhovtTransPhieuNhapWithRelations>(
+      {url: `/khovt-trans-phieu-nhaps/${id}`, method: 'GET', signal
+    },
+      );
+    }
+  
 
-export const getKhovtTransPhieuNhapControllerUpdateByIdMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>,
-    TError,
-    { id: number; data: KhovtTransPhieuNhapPartial },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>,
-  TError,
-  { id: number; data: KhovtTransPhieuNhapPartial },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
+export const getKhovtTransPhieuNhapControllerFindByIdQueryKey = (id: number,) => {
+    return [`/khovt-trans-phieu-nhaps/${id}`] as const;
+    }
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>,
-    { id: number; data: KhovtTransPhieuNhapPartial }
-  > = (props) => {
-    const { id, data } = props ?? {};
-
-    return khovtTransPhieuNhapControllerUpdateById(id, data);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type KhovtTransPhieuNhapControllerUpdateByIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>
->;
-export type KhovtTransPhieuNhapControllerUpdateByIdMutationBody = KhovtTransPhieuNhapPartial;
-export type KhovtTransPhieuNhapControllerUpdateByIdMutationError = ErrorType<unknown>;
-
-export const useKhovtTransPhieuNhapControllerUpdateById = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>,
-    TError,
-    { id: number; data: KhovtTransPhieuNhapPartial },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerUpdateById>>,
-  TError,
-  { id: number; data: KhovtTransPhieuNhapPartial },
-  TContext
-> => {
-  const mutationOptions = getKhovtTransPhieuNhapControllerUpdateByIdMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};
-export const khovtTransPhieuNhapControllerFindById = (
-  id: number,
-  params?: KhovtTransPhieuNhapControllerFindByIdParams,
-  signal?: AbortSignal,
+    
+export const getKhovtTransPhieuNhapControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>, TError = ErrorType<unknown>>(id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>, TError, TData>>, }
 ) => {
-  return drcInstance<KhovtTransPhieuNhapWithRelations>({
-    url: `/khovt-trans-phieu-nhaps/${id}`,
-    method: 'GET',
-    params,
-    signal,
-  });
-};
 
-export const getKhovtTransPhieuNhapControllerFindByIdQueryKey = (
-  id: number,
-  params?: KhovtTransPhieuNhapControllerFindByIdParams,
-) => {
-  return [`/khovt-trans-phieu-nhaps/${id}`, ...(params ? [params] : [])] as const;
-};
+const {query: queryOptions} = options ?? {};
 
-export const getKhovtTransPhieuNhapControllerFindByIdQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>,
-  TError = ErrorType<unknown>,
->(
-  id: number,
-  params?: KhovtTransPhieuNhapControllerFindByIdParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>, TError, TData>>;
-  },
-) => {
-  const { query: queryOptions } = options ?? {};
+  const queryKey =  queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerFindByIdQueryKey(id);
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerFindByIdQueryKey(id, params);
+  
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>> = ({ signal }) =>
-    khovtTransPhieuNhapControllerFindById(id, params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>> = ({ signal }) => khovtTransPhieuNhapControllerFindById(id, signal);
 
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+      
 
-export type KhovtTransPhieuNhapControllerFindByIdQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>
->;
-export type KhovtTransPhieuNhapControllerFindByIdQueryError = ErrorType<unknown>;
+      
 
-export const useKhovtTransPhieuNhapControllerFindById = <
-  TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>,
-  TError = ErrorType<unknown>,
->(
-  id: number,
-  params?: KhovtTransPhieuNhapControllerFindByIdParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtTransPhieuNhapControllerFindByIdQueryOptions(id, params, options);
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>, TError, TData> & { queryKey: QueryKey }
+}
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+export type KhovtTransPhieuNhapControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>>
+export type KhovtTransPhieuNhapControllerFindByIdQueryError = ErrorType<unknown>
 
-  query.queryKey = queryOptions.queryKey;
+export const useKhovtTransPhieuNhapControllerFindById = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>, TError = ErrorType<unknown>>(
+ id: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFindById>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtTransPhieuNhapControllerFindByIdQueryOptions(id,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
 
-export const khovtTransPhieuNhapControllerDeleteById = (id: number) => {
-  return drcInstance<unknown>({ url: `/khovt-trans-phieu-nhaps/${id}`, method: 'DELETE' });
-};
 
-export const getKhovtTransPhieuNhapControllerDeleteByIdMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>,
-    TError,
-    { id: number },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>,
-  TError,
-  { id: number },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>,
-    { id: number }
-  > = (props) => {
-    const { id } = props ?? {};
+export const khovtTransPhieuNhapControllerDeleteById = (
+    id: number,
+ ) => {
+      
+      
+      return drcInstance<unknown>(
+      {url: `/khovt-trans-phieu-nhaps/${id}`, method: 'DELETE'
+    },
+      );
+    }
+  
 
-    return khovtTransPhieuNhapControllerDeleteById(id);
-  };
 
-  return { mutationFn, ...mutationOptions };
-};
+export const getKhovtTransPhieuNhapControllerDeleteByIdMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>, TError,{id: number}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>, TError,{id: number}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
 
-export type KhovtTransPhieuNhapControllerDeleteByIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>
->;
+      
 
-export type KhovtTransPhieuNhapControllerDeleteByIdMutationError = ErrorType<unknown>;
 
-export const useKhovtTransPhieuNhapControllerDeleteById = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>,
-    TError,
-    { id: number },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>,
-  TError,
-  { id: number },
-  TContext
-> => {
-  const mutationOptions = getKhovtTransPhieuNhapControllerDeleteByIdMutationOptions(options);
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
 
-  return useMutation(mutationOptions);
-};
-export const khovtTransPhieuNhapControllerCreate = (newKhovtTransPhieuNhap: NewKhovtTransPhieuNhap) => {
-  return drcInstance<KhovtTransPhieuNhap>({
-    url: `/khovt-trans-phieu-nhaps`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: newKhovtTransPhieuNhap,
-  });
-};
+          return  khovtTransPhieuNhapControllerDeleteById(id,)
+        }
 
-export const getKhovtTransPhieuNhapControllerCreateMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>,
-    TError,
-    { data: NewKhovtTransPhieuNhap },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>,
-  TError,
-  { data: NewKhovtTransPhieuNhap },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
+        
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>,
-    { data: NewKhovtTransPhieuNhap }
-  > = (props) => {
-    const { data } = props ?? {};
 
-    return khovtTransPhieuNhapControllerCreate(data);
-  };
+  return  { mutationFn, ...mutationOptions }}
 
-  return { mutationFn, ...mutationOptions };
-};
+    export type KhovtTransPhieuNhapControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>>
+    
+    export type KhovtTransPhieuNhapControllerDeleteByIdMutationError = ErrorType<unknown>
 
-export type KhovtTransPhieuNhapControllerCreateMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>
->;
-export type KhovtTransPhieuNhapControllerCreateMutationBody = NewKhovtTransPhieuNhap;
-export type KhovtTransPhieuNhapControllerCreateMutationError = ErrorType<unknown>;
+    export const useKhovtTransPhieuNhapControllerDeleteById = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>, TError,{id: number}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtTransPhieuNhapControllerDeleteById>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
 
-export const useKhovtTransPhieuNhapControllerCreate = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>,
-    TError,
-    { data: NewKhovtTransPhieuNhap },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>,
-  TError,
-  { data: NewKhovtTransPhieuNhap },
-  TContext
-> => {
-  const mutationOptions = getKhovtTransPhieuNhapControllerCreateMutationOptions(options);
+      const mutationOptions = getKhovtTransPhieuNhapControllerDeleteByIdMutationOptions(options);
 
-  return useMutation(mutationOptions);
-};
-export const khovtTransPhieuNhapControllerFind = (
-  params?: KhovtTransPhieuNhapControllerFindParams,
-  signal?: AbortSignal,
+      return useMutation(mutationOptions);
+    }
+    export const khovtTransPhieuNhapControllerCreate = (
+    createPhieuNhapRequest: CreatePhieuNhapRequest,
+ ) => {
+      
+      
+      return drcInstance<KhovtTransPhieuNhapWithRelations>(
+      {url: `/khovt-trans-phieu-nhaps`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: createPhieuNhapRequest
+    },
+      );
+    }
+  
+
+
+export const getKhovtTransPhieuNhapControllerCreateMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>, TError,{data: CreatePhieuNhapRequest}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>, TError,{data: CreatePhieuNhapRequest}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>, {data: CreatePhieuNhapRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  khovtTransPhieuNhapControllerCreate(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type KhovtTransPhieuNhapControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>>
+    export type KhovtTransPhieuNhapControllerCreateMutationBody = CreatePhieuNhapRequest
+    export type KhovtTransPhieuNhapControllerCreateMutationError = ErrorType<unknown>
+
+    export const useKhovtTransPhieuNhapControllerCreate = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>, TError,{data: CreatePhieuNhapRequest}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtTransPhieuNhapControllerCreate>>,
+        TError,
+        {data: CreatePhieuNhapRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getKhovtTransPhieuNhapControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const khovtTransPhieuNhapControllerFind = (
+    params?: KhovtTransPhieuNhapControllerFindParams,
+ signal?: AbortSignal
 ) => {
-  return drcInstance<KhovtTransPhieuNhapWithRelations[]>({
-    url: `/khovt-trans-phieu-nhaps`,
-    method: 'GET',
-    params,
-    signal,
-  });
-};
+      
+      
+      return drcInstance<KhovtTransPhieuNhapWithRelations[]>(
+      {url: `/khovt-trans-phieu-nhaps`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-export const getKhovtTransPhieuNhapControllerFindQueryKey = (params?: KhovtTransPhieuNhapControllerFindParams) => {
-  return [`/khovt-trans-phieu-nhaps`, ...(params ? [params] : [])] as const;
-};
+export const getKhovtTransPhieuNhapControllerFindQueryKey = (params?: KhovtTransPhieuNhapControllerFindParams,) => {
+    return [`/khovt-trans-phieu-nhaps`, ...(params ? [params]: [])] as const;
+    }
 
-export const getKhovtTransPhieuNhapControllerFindQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtTransPhieuNhapControllerFindParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>, TError, TData>>;
-  },
+    
+export const getKhovtTransPhieuNhapControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>, TError = ErrorType<unknown>>(params?: KhovtTransPhieuNhapControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>, TError, TData>>, }
 ) => {
-  const { query: queryOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerFindQueryKey(params);
+const {query: queryOptions} = options ?? {};
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>> = ({ signal }) =>
-    khovtTransPhieuNhapControllerFind(params, signal);
+  const queryKey =  queryOptions?.queryKey ?? getKhovtTransPhieuNhapControllerFindQueryKey(params);
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+  
 
-export type KhovtTransPhieuNhapControllerFindQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>
->;
-export type KhovtTransPhieuNhapControllerFindQueryError = ErrorType<unknown>;
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>> = ({ signal }) => khovtTransPhieuNhapControllerFind(params, signal);
 
-export const useKhovtTransPhieuNhapControllerFind = <
-  TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtTransPhieuNhapControllerFindParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtTransPhieuNhapControllerFindQueryOptions(params, options);
+      
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+      
 
-  query.queryKey = queryOptions.queryKey;
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtTransPhieuNhapControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>>
+export type KhovtTransPhieuNhapControllerFindQueryError = ErrorType<unknown>
+
+export const useKhovtTransPhieuNhapControllerFind = <TData = Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>, TError = ErrorType<unknown>>(
+ params?: KhovtTransPhieuNhapControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtTransPhieuNhapControllerFind>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtTransPhieuNhapControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
+
+
+

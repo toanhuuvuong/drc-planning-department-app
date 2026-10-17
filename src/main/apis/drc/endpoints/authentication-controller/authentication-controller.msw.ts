@@ -5,41 +5,54 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { faker } from '@faker-js/faker';
-import { HttpResponse, delay, http } from 'msw';
-import type { AuthenticationControllerLogin200 } from '../../models';
+import {
+  faker
+} from '@faker-js/faker'
+import {
+  HttpResponse,
+  delay,
+  http
+} from 'msw'
+import type {
+  AuthUserInformation,
+  AuthUserInformationExcludingToken
+} from '../../models'
 
-export const getAuthenticationControllerLoginResponseMock = (
-  overrideResponse: Partial<AuthenticationControllerLogin200> = {},
-): AuthenticationControllerLogin200 => ({
-  token: faker.helpers.arrayElement([faker.word.sample(), undefined]),
-  ...overrideResponse,
-});
+export const getAuthenticationControllerLoginResponseMock = (overrideResponse: Partial< AuthUserInformation > = {}): AuthUserInformation => ({controllerPermissions: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({controller: faker.word.sample(), permission: faker.helpers.arrayElement([faker.word.sample(), undefined])})), dsKhoTpPermission: faker.helpers.arrayElement([faker.word.sample(), undefined]), dsKhoVtPermission: faker.helpers.arrayElement([faker.word.sample(), undefined]), token: faker.word.sample(), userId: faker.number.int({min: undefined, max: undefined}), username: faker.word.sample(), ...overrideResponse})
 
-export const getAuthenticationControllerLoginMockHandler = (
-  overrideResponse?:
-    | AuthenticationControllerLogin200
-    | ((
-        info: Parameters<Parameters<typeof http.post>[1]>[0],
-      ) => Promise<AuthenticationControllerLogin200> | AuthenticationControllerLogin200),
-) => {
-  return http.post('*/users/login', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getAuthenticationControllerLoginResponseMock(),
-      ),
+export const getAuthenticationControllerFetchByTokenResponseMock = (overrideResponse: Partial< AuthUserInformationExcludingToken > = {}): AuthUserInformationExcludingToken => ({controllerPermissions: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({controller: faker.word.sample(), permission: faker.helpers.arrayElement([faker.word.sample(), undefined])})), dsKhoTpPermission: faker.helpers.arrayElement([faker.word.sample(), undefined]), dsKhoVtPermission: faker.helpers.arrayElement([faker.word.sample(), undefined]), userId: faker.number.int({min: undefined, max: undefined}), username: faker.word.sample(), ...overrideResponse})
+
+
+export const getAuthenticationControllerLoginMockHandler = (overrideResponse?: AuthUserInformation | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<AuthUserInformation> | AuthUserInformation)) => {
+  return http.post('*/users/login', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getAuthenticationControllerLoginResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
-export const getAuthenticationControllerMock = () => [getAuthenticationControllerLoginMockHandler()];
+        }
+      }
+    )
+  })
+}
+
+export const getAuthenticationControllerFetchByTokenMockHandler = (overrideResponse?: AuthUserInformationExcludingToken | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<AuthUserInformationExcludingToken> | AuthUserInformationExcludingToken)) => {
+  return http.get('*/users/:id/fetch-by-token', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getAuthenticationControllerFetchByTokenResponseMock()),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
+export const getAuthenticationControllerMock = () => [
+  getAuthenticationControllerLoginMockHandler(),
+  getAuthenticationControllerFetchByTokenMockHandler()
+]

@@ -6,14 +6,20 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type KhovtMasterVtFilter1FieldsOneOfTwoItem =
-  (typeof KhovtMasterVtFilter1FieldsOneOfTwoItem)[keyof typeof KhovtMasterVtFilter1FieldsOneOfTwoItem];
+export type KhovtMasterVtFilter1FieldsOneOfTwoItem = typeof KhovtMasterVtFilter1FieldsOneOfTwoItem[keyof typeof KhovtMasterVtFilter1FieldsOneOfTwoItem];
+
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const KhovtMasterVtFilter1FieldsOneOfTwoItem = {
-  dvt: 'dvt',
-  ghiChu: 'ghiChu',
-  maNhom: 'maNhom',
   maVt: 'maVt',
   tenVt: 'tenVt',
+  dvt: 'dvt',
+  ghiChu: 'ghiChu',
+  createTime: 'createTime',
+  updateTime: 'updateTime',
+  createUser: 'createUser',
+  updateUser: 'updateUser',
+  tenGoiNho: 'tenGoiNho',
+  thoiHanLuuKho: 'thoiHanLuuKho',
+  maNhom: 'maNhom',
 } as const;

@@ -3,6 +3,7 @@ import { getKhovtMasterKhoControllerMock } from 'main/apis/drc/endpoints/khovt-m
 import { getKhovtMasterNguonGocControllerMock } from 'main/apis/drc/endpoints/khovt-master-nguon-goc-controller/khovt-master-nguon-goc-controller.msw';
 import { getKhovtMasterVtControllerMock } from 'main/apis/drc/endpoints/khovt-master-vt-controller/khovt-master-vt-controller.msw';
 import { getKhovtNhomControllerMock } from 'main/apis/drc/endpoints/khovt-nhom-controller/khovt-nhom-controller.msw';
+import { getKhovtTransPhieuNhapControllerMock } from 'main/apis/drc/endpoints/khovt-trans-phieu-nhap-controller/khovt-trans-phieu-nhap-controller.msw';
 import { getKhovtTransPhieuXuatControllerMock } from 'main/apis/drc/endpoints/khovt-trans-phieu-xuat-controller/khovt-trans-phieu-xuat-controller.msw';
 import { setupWorker } from 'msw/browser';
 
@@ -13,4 +14,5 @@ export const worker = setupWorker(
   ...getKhovtNhomControllerMock(),
   ...getKhovtMasterVtControllerMock(),
   ...getKhovtMasterNguonGocControllerMock(),
+  ...getKhovtTransPhieuNhapControllerMock(),
 );

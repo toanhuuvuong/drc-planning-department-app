@@ -5,11 +5,17 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
+import type { KhovtTransPhieunhapDetailWithRelations } from './khovtTransPhieunhapDetailWithRelations';
 
 /**
  * (tsType: KhovtTransPhieuNhapWithRelations, schemaOptions: { includeRelations: true })
  */
 export interface KhovtTransPhieuNhapWithRelations {
+  /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  details?: KhovtTransPhieunhapDetailWithRelations[];
   /** @nullable */
   donViNhap?: string | null;
   /** @nullable */
@@ -19,7 +25,7 @@ export interface KhovtTransPhieuNhapWithRelations {
   /** @nullable */
   maKho?: string | null;
   /** @nullable */
-  ngayNhanKqtn?: string | null;
+  ngayHoaDon?: string | null;
   /** @nullable */
   ngayNhap?: string | null;
   /** @nullable */
@@ -30,6 +36,10 @@ export interface KhovtTransPhieuNhapWithRelations {
   soPhieuNhap?: string | null;
   /** @nullable */
   typeNhap?: string | null;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
   /** @nullable */
   viTriLuuKho?: string | null;
   /** @nullable */

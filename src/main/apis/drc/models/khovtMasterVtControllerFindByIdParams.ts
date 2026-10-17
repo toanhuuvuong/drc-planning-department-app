@@ -8,5 +8,5 @@
 import type { KhovtMasterVtFilter } from './khovtMasterVtFilter';
 
 export type KhovtMasterVtControllerFindByIdParams = {
-  filter?: KhovtMasterVtFilter;
+filter?: KhovtMasterVtFilter;
 };

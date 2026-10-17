@@ -1,12 +1,17 @@
 const Error = {
   SYSTEM_ERROR: {
-    HEADDING: 'A system error has occurred',
+    HEADING: 'Đã xảy ra lỗi hệ thống',
     MESSAGE:
-      'We apologize for the inconvenience. Please make sure to specify the correct URL, etc,... or please try again later.',
+      'Chúng tôi xin lỗi vì sự bất tiện này. Vui lòng đảm bảo chỉ định đúng URL, v.v... hoặc vui lòng thử lại sau.',
   },
   URL_NOT_FOUND: {
-    HEADDING: 'The page you are looking for could not be found',
-    MESSAGE: 'The page you are looking for may be temporarily unavailable, or may have been moved or deleted.',
+    HEADING: 'Không tìm thấy trang bạn đang tìm kiếm',
+    MESSAGE: 'Trang bạn đang tìm kiếm có thể tạm thời không khả dụng hoặc đã bị di chuyển hoặc xóa.',
+  },
+
+  ACCESS_DENIED: {
+    HEADING: 'Truy cập bị từ chối',
+    MESSAGE: 'Bạn không có quyền để truy cập vào chức năng này.',
   },
 };
 

@@ -11,6 +11,10 @@
  */
 export interface KhovtTransThanhKhoanPartial {
   /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  /** @nullable */
   dvt?: string | null;
   /** @nullable */
   ghiChu?: string | null;
@@ -30,4 +34,8 @@ export interface KhovtTransThanhKhoanPartial {
   tonCuoiKy?: number | null;
   /** @nullable */
   tonDauKy?: number | null;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

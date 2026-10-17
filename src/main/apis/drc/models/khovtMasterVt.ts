@@ -7,14 +7,25 @@
  */
 
 export interface KhovtMasterVt {
+  /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
   /** */
   dvt: string;
   /** @nullable */
   ghiChu?: string | null;
-  /** @nullable */
-  maNhom?: string | null;
+  maNhom?: string;
   /** */
   maVt: string;
+  /** @nullable */
+  tenGoiNho?: string | null;
   /** */
   tenVt: string;
+  /** @nullable */
+  thoiHanLuuKho?: number | null;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

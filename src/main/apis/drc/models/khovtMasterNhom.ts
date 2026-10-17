@@ -8,6 +8,10 @@
 
 export interface KhovtMasterNhom {
   /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  /** @nullable */
   ghiChu?: string | null;
   /** */
   id?: number;
@@ -15,4 +19,8 @@ export interface KhovtMasterNhom {
   maNhom: string;
   /** */
   tenNhom: string;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

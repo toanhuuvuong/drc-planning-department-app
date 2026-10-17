@@ -7,6 +7,8 @@
  */
 
 export type KhovtTransThanhKhoanFilterFieldsOneOf = {
+  createTime?: boolean;
+  createUser?: boolean;
   dvt?: boolean;
   ghiChu?: boolean;
   id?: boolean;
@@ -17,4 +19,6 @@ export type KhovtTransThanhKhoanFilterFieldsOneOf = {
   tenVt?: boolean;
   tonCuoiKy?: boolean;
   tonDauKy?: boolean;
+  updateTime?: boolean;
+  updateUser?: boolean;
 };

@@ -6,10 +6,12 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { KhovtMasterVtFilterFields } from './khovtMasterVtFilterFields';
+import type { KhovtMasterVtFilterIncludeItem } from './khovtMasterVtFilterIncludeItem';
 import type { KhovtMasterVtFilterOrder } from './khovtMasterVtFilterOrder';
 
 export interface KhovtMasterVtFilter {
   fields?: KhovtMasterVtFilterFields;
+  include?: KhovtMasterVtFilterIncludeItem[];
   /** @minimum 1 */
   limit?: number;
   /** @minimum 0 */

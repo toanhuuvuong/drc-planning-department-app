@@ -5,180 +5,137 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { faker } from '@faker-js/faker';
-import { HttpResponse, delay, http } from 'msw';
-import type { KhovtMasterVt, KhovtMasterVtWithRelations, LoopbackCount } from '../../models';
+import {
+  faker
+} from '@faker-js/faker'
+import {
+  HttpResponse,
+  delay,
+  http
+} from 'msw'
+import type {
+  KhovtMasterVt,
+  KhovtMasterVtWithRelations,
+  LoopbackCount
+} from '../../models'
 
-export const getKhovtMasterVtControllerCountResponseMock = (
-  overrideResponse: Partial<LoopbackCount> = {},
-): LoopbackCount => ({
-  count: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-  ...overrideResponse,
-});
+export const getKhovtMasterVtControllerCountResponseMock = (overrideResponse: Partial< LoopbackCount > = {}): LoopbackCount => ({count: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), ...overrideResponse})
 
-export const getKhovtMasterVtControllerFindByIdResponseMock = (
-  overrideResponse: Partial<KhovtMasterVtWithRelations> = {},
-): KhovtMasterVtWithRelations => ({
-  dvt: faker.word.sample(),
-  ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  maNhom: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  maVt: faker.word.sample(),
-  tenVt: faker.word.sample(),
-  ...overrideResponse,
-});
+export const getKhovtMasterVtControllerImportResponseMock = (): KhovtMasterVt[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), dvt: faker.word.sample(), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNhom: faker.helpers.arrayElement([faker.word.sample(), undefined]), maVt: faker.word.sample(), tenGoiNho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tenVt: faker.word.sample(), thoiHanLuuKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})))
 
-export const getKhovtMasterVtControllerCreateResponseMock = (
-  overrideResponse: Partial<KhovtMasterVt> = {},
-): KhovtMasterVt => ({
-  dvt: faker.word.sample(),
-  ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  maNhom: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  maVt: faker.word.sample(),
-  tenVt: faker.word.sample(),
-  ...overrideResponse,
-});
+export const getKhovtMasterVtControllerFindByIdResponseMock = (overrideResponse: Partial< KhovtMasterVtWithRelations > = {}): KhovtMasterVtWithRelations => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), dvt: faker.word.sample(), foreignKey: faker.helpers.arrayElement([{}, undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNhom: faker.helpers.arrayElement([faker.word.sample(), undefined]), maVt: faker.word.sample(), nhomvt: faker.helpers.arrayElement([{createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), maNhom: faker.word.sample(), tenNhom: faker.word.sample(), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])}, undefined]), tenGoiNho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tenVt: faker.word.sample(), thoiHanLuuKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ...overrideResponse})
 
-export const getKhovtMasterVtControllerFindResponseMock = (): KhovtMasterVtWithRelations[] =>
-  Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
-    dvt: faker.word.sample(),
-    ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    maNhom: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    maVt: faker.word.sample(),
-    tenVt: faker.word.sample(),
-  }));
+export const getKhovtMasterVtControllerCreateResponseMock = (overrideResponse: Partial< KhovtMasterVt > = {}): KhovtMasterVt => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), dvt: faker.word.sample(), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNhom: faker.helpers.arrayElement([faker.word.sample(), undefined]), maVt: faker.word.sample(), tenGoiNho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tenVt: faker.word.sample(), thoiHanLuuKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ...overrideResponse})
 
-export const getKhovtMasterVtControllerCountMockHandler = (
-  overrideResponse?:
-    | LoopbackCount
-    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<LoopbackCount> | LoopbackCount),
-) => {
-  return http.get('*/khovt-master-vts/count', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterVtControllerCountResponseMock(),
-      ),
+export const getKhovtMasterVtControllerFindResponseMock = (): KhovtMasterVtWithRelations[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), dvt: faker.word.sample(), foreignKey: faker.helpers.arrayElement([{}, undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNhom: faker.helpers.arrayElement([faker.word.sample(), undefined]), maVt: faker.word.sample(), nhomvt: faker.helpers.arrayElement([{createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), maNhom: faker.word.sample(), tenNhom: faker.word.sample(), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])}, undefined]), tenGoiNho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tenVt: faker.word.sample(), thoiHanLuuKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})))
+
+
+export const getKhovtMasterVtControllerCountMockHandler = (overrideResponse?: LoopbackCount | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<LoopbackCount> | LoopbackCount)) => {
+  return http.get('*/khovt-master-vts/count', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterVtControllerCountResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
+
+export const getKhovtMasterVtControllerImportMockHandler = (overrideResponse?: KhovtMasterVt[] | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtMasterVt[]> | KhovtMasterVt[])) => {
+  return http.post('*/khovt-master-vts/import', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterVtControllerImportResponseMock()),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
 
 export const getKhovtMasterVtControllerUpdateByIdMockHandler = () => {
-  return http.patch('*/khovt-master-vts/:id', async () => {
-    await delay(1000);
-    return new HttpResponse(null, {
-      status: 204,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  });
-};
+  return http.patch('*/khovt-master-vts/:id', async () => {await delay(1000);
+    return new HttpResponse(null,
+      {
+        status: 204,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtMasterVtControllerFindByIdMockHandler = (
-  overrideResponse?:
-    | KhovtMasterVtWithRelations
-    | ((
-        info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<KhovtMasterVtWithRelations> | KhovtMasterVtWithRelations),
-) => {
-  return http.get('*/khovt-master-vts/:id', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterVtControllerFindByIdResponseMock(),
-      ),
+export const getKhovtMasterVtControllerFindByIdMockHandler = (overrideResponse?: KhovtMasterVtWithRelations | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhovtMasterVtWithRelations> | KhovtMasterVtWithRelations)) => {
+  return http.get('*/khovt-master-vts/:id', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterVtControllerFindByIdResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 
 export const getKhovtMasterVtControllerDeleteByIdMockHandler = () => {
-  return http.delete('*/khovt-master-vts/:id', async () => {
-    await delay(1000);
-    return new HttpResponse(null, {
-      status: 204,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  });
-};
+  return http.delete('*/khovt-master-vts/:id', async () => {await delay(1000);
+    return new HttpResponse(null,
+      {
+        status: 204,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtMasterVtControllerCreateMockHandler = (
-  overrideResponse?:
-    | KhovtMasterVt
-    | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtMasterVt> | KhovtMasterVt),
-) => {
-  return http.post('*/khovt-master-vts', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterVtControllerCreateResponseMock(),
-      ),
+export const getKhovtMasterVtControllerCreateMockHandler = (overrideResponse?: KhovtMasterVt | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtMasterVt> | KhovtMasterVt)) => {
+  return http.post('*/khovt-master-vts', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterVtControllerCreateResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtMasterVtControllerFindMockHandler = (
-  overrideResponse?:
-    | KhovtMasterVtWithRelations[]
-    | ((
-        info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<KhovtMasterVtWithRelations[]> | KhovtMasterVtWithRelations[]),
-) => {
-  return http.get('*/khovt-master-vts', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterVtControllerFindResponseMock(),
-      ),
+export const getKhovtMasterVtControllerFindMockHandler = (overrideResponse?: KhovtMasterVtWithRelations[] | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhovtMasterVtWithRelations[]> | KhovtMasterVtWithRelations[])) => {
+  return http.get('*/khovt-master-vts', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterVtControllerFindResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 export const getKhovtMasterVtControllerMock = () => [
   getKhovtMasterVtControllerCountMockHandler(),
+  getKhovtMasterVtControllerImportMockHandler(),
   getKhovtMasterVtControllerUpdateByIdMockHandler(),
   getKhovtMasterVtControllerFindByIdMockHandler(),
   getKhovtMasterVtControllerDeleteByIdMockHandler(),
   getKhovtMasterVtControllerCreateMockHandler(),
-  getKhovtMasterVtControllerFindMockHandler(),
-];
+  getKhovtMasterVtControllerFindMockHandler()
+]

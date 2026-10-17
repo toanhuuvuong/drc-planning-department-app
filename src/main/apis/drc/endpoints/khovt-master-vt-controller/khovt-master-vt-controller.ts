@@ -5,7 +5,10 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query'
 import type {
   MutationFunction,
   QueryFunction,
@@ -13,8 +16,8 @@ import type {
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
+  UseQueryResult
+} from '@tanstack/react-query'
 import type {
   KhovtMasterVt,
   KhovtMasterVtControllerCountParams,
@@ -23,358 +26,385 @@ import type {
   KhovtMasterVtPartial,
   KhovtMasterVtWithRelations,
   LoopbackCount,
-  NewKhovtMasterVt,
-} from '../../models';
+  NewKhovtMasterVt
+} from '../../models'
 import { drcInstance } from '../../../configs/mutator/drc-instance';
 import type { ErrorType } from '../../../configs/mutator/drc-instance';
 
-export const khovtMasterVtControllerCount = (params?: KhovtMasterVtControllerCountParams, signal?: AbortSignal) => {
-  return drcInstance<LoopbackCount>({ url: `/khovt-master-vts/count`, method: 'GET', params, signal });
-};
 
-export const getKhovtMasterVtControllerCountQueryKey = (params?: KhovtMasterVtControllerCountParams) => {
-  return [`/khovt-master-vts/count`, ...(params ? [params] : [])] as const;
-};
 
-export const getKhovtMasterVtControllerCountQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtMasterVtControllerCount>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterVtControllerCountParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>, TError, TData>>;
-  },
+export const khovtMasterVtControllerCount = (
+    params?: KhovtMasterVtControllerCountParams,
+ signal?: AbortSignal
 ) => {
-  const { query: queryOptions } = options ?? {};
+      
+      
+      return drcInstance<LoopbackCount>(
+      {url: `/khovt-master-vts/count`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtMasterVtControllerCountQueryKey(params);
+export const getKhovtMasterVtControllerCountQueryKey = (params?: KhovtMasterVtControllerCountParams,) => {
+    return [`/khovt-master-vts/count`, ...(params ? [params]: [])] as const;
+    }
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>> = ({ signal }) =>
-    khovtMasterVtControllerCount(params, signal);
+    
+export const getKhovtMasterVtControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof khovtMasterVtControllerCount>>, TError = ErrorType<unknown>>(params?: KhovtMasterVtControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>, TError, TData>>, }
+) => {
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerCount>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+const {query: queryOptions} = options ?? {};
 
-export type KhovtMasterVtControllerCountQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterVtControllerCount>>
->;
-export type KhovtMasterVtControllerCountQueryError = ErrorType<unknown>;
+  const queryKey =  queryOptions?.queryKey ?? getKhovtMasterVtControllerCountQueryKey(params);
 
-export const useKhovtMasterVtControllerCount = <
-  TData = Awaited<ReturnType<typeof khovtMasterVtControllerCount>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterVtControllerCountParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtMasterVtControllerCountQueryOptions(params, options);
+  
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>> = ({ signal }) => khovtMasterVtControllerCount(params, signal);
 
-  query.queryKey = queryOptions.queryKey;
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtMasterVtControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>>
+export type KhovtMasterVtControllerCountQueryError = ErrorType<unknown>
+
+export const useKhovtMasterVtControllerCount = <TData = Awaited<ReturnType<typeof khovtMasterVtControllerCount>>, TError = ErrorType<unknown>>(
+ params?: KhovtMasterVtControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCount>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtMasterVtControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
 
-export const khovtMasterVtControllerUpdateById = (id: string, khovtMasterVtPartial: KhovtMasterVtPartial) => {
-  return drcInstance<unknown>({
-    url: `/khovt-master-vts/${id}`,
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    data: khovtMasterVtPartial,
-  });
-};
 
-export const getKhovtMasterVtControllerUpdateByIdMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>,
-    TError,
-    { id: string; data: KhovtMasterVtPartial },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>,
-  TError,
-  { id: string; data: KhovtMasterVtPartial },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>,
-    { id: string; data: KhovtMasterVtPartial }
-  > = (props) => {
-    const { id, data } = props ?? {};
+export const khovtMasterVtControllerImport = (
+    khovtMasterVt: KhovtMasterVt[],
+ ) => {
+      
+      
+      return drcInstance<KhovtMasterVt[]>(
+      {url: `/khovt-master-vts/import`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: khovtMasterVt
+    },
+      );
+    }
+  
 
-    return khovtMasterVtControllerUpdateById(id, data);
-  };
 
-  return { mutationFn, ...mutationOptions };
-};
+export const getKhovtMasterVtControllerImportMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerImport>>, TError,{data: KhovtMasterVt[]}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerImport>>, TError,{data: KhovtMasterVt[]}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
 
-export type KhovtMasterVtControllerUpdateByIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>
->;
-export type KhovtMasterVtControllerUpdateByIdMutationBody = KhovtMasterVtPartial;
-export type KhovtMasterVtControllerUpdateByIdMutationError = ErrorType<unknown>;
+      
 
-export const useKhovtMasterVtControllerUpdateById = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>,
-    TError,
-    { id: string; data: KhovtMasterVtPartial },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>,
-  TError,
-  { id: string; data: KhovtMasterVtPartial },
-  TContext
-> => {
-  const mutationOptions = getKhovtMasterVtControllerUpdateByIdMutationOptions(options);
 
-  return useMutation(mutationOptions);
-};
-export const khovtMasterVtControllerFindById = (
-  id: string,
-  params?: KhovtMasterVtControllerFindByIdParams,
-  signal?: AbortSignal,
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterVtControllerImport>>, {data: KhovtMasterVt[]}> = (props) => {
+          const {data} = props ?? {};
+
+          return  khovtMasterVtControllerImport(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type KhovtMasterVtControllerImportMutationResult = NonNullable<Awaited<ReturnType<typeof khovtMasterVtControllerImport>>>
+    export type KhovtMasterVtControllerImportMutationBody = KhovtMasterVt[]
+    export type KhovtMasterVtControllerImportMutationError = ErrorType<unknown>
+
+    export const useKhovtMasterVtControllerImport = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerImport>>, TError,{data: KhovtMasterVt[]}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtMasterVtControllerImport>>,
+        TError,
+        {data: KhovtMasterVt[]},
+        TContext
+      > => {
+
+      const mutationOptions = getKhovtMasterVtControllerImportMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const khovtMasterVtControllerUpdateById = (
+    id: string,
+    khovtMasterVtPartial: KhovtMasterVtPartial,
+ ) => {
+      
+      
+      return drcInstance<unknown>(
+      {url: `/khovt-master-vts/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: khovtMasterVtPartial
+    },
+      );
+    }
+  
+
+
+export const getKhovtMasterVtControllerUpdateByIdMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>, TError,{id: string;data: KhovtMasterVtPartial}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>, TError,{id: string;data: KhovtMasterVtPartial}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>, {id: string;data: KhovtMasterVtPartial}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  khovtMasterVtControllerUpdateById(id,data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type KhovtMasterVtControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>>
+    export type KhovtMasterVtControllerUpdateByIdMutationBody = KhovtMasterVtPartial
+    export type KhovtMasterVtControllerUpdateByIdMutationError = ErrorType<unknown>
+
+    export const useKhovtMasterVtControllerUpdateById = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>, TError,{id: string;data: KhovtMasterVtPartial}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtMasterVtControllerUpdateById>>,
+        TError,
+        {id: string;data: KhovtMasterVtPartial},
+        TContext
+      > => {
+
+      const mutationOptions = getKhovtMasterVtControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const khovtMasterVtControllerFindById = (
+    id: string,
+    params?: KhovtMasterVtControllerFindByIdParams,
+ signal?: AbortSignal
 ) => {
-  return drcInstance<KhovtMasterVtWithRelations>({ url: `/khovt-master-vts/${id}`, method: 'GET', params, signal });
-};
+      
+      
+      return drcInstance<KhovtMasterVtWithRelations>(
+      {url: `/khovt-master-vts/${id}`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-export const getKhovtMasterVtControllerFindByIdQueryKey = (
-  id: string,
-  params?: KhovtMasterVtControllerFindByIdParams,
+export const getKhovtMasterVtControllerFindByIdQueryKey = (id: string,
+    params?: KhovtMasterVtControllerFindByIdParams,) => {
+    return [`/khovt-master-vts/${id}`, ...(params ? [params]: [])] as const;
+    }
+
+    
+export const getKhovtMasterVtControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>, TError = ErrorType<unknown>>(id: string,
+    params?: KhovtMasterVtControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>, TError, TData>>, }
 ) => {
-  return [`/khovt-master-vts/${id}`, ...(params ? [params] : [])] as const;
-};
 
-export const getKhovtMasterVtControllerFindByIdQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>,
-  TError = ErrorType<unknown>,
->(
-  id: string,
-  params?: KhovtMasterVtControllerFindByIdParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>, TError, TData>>;
-  },
-) => {
-  const { query: queryOptions } = options ?? {};
+const {query: queryOptions} = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtMasterVtControllerFindByIdQueryKey(id, params);
+  const queryKey =  queryOptions?.queryKey ?? getKhovtMasterVtControllerFindByIdQueryKey(id,params);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>> = ({ signal }) =>
-    khovtMasterVtControllerFindById(id, params, signal);
+  
 
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>> = ({ signal }) => khovtMasterVtControllerFindById(id,params, signal);
 
-export type KhovtMasterVtControllerFindByIdQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>
->;
-export type KhovtMasterVtControllerFindByIdQueryError = ErrorType<unknown>;
+      
 
-export const useKhovtMasterVtControllerFindById = <
-  TData = Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>,
-  TError = ErrorType<unknown>,
->(
-  id: string,
-  params?: KhovtMasterVtControllerFindByIdParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtMasterVtControllerFindByIdQueryOptions(id, params, options);
+      
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>, TError, TData> & { queryKey: QueryKey }
+}
 
-  query.queryKey = queryOptions.queryKey;
+export type KhovtMasterVtControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>>
+export type KhovtMasterVtControllerFindByIdQueryError = ErrorType<unknown>
+
+export const useKhovtMasterVtControllerFindById = <TData = Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>, TError = ErrorType<unknown>>(
+ id: string,
+    params?: KhovtMasterVtControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFindById>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtMasterVtControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
 
-export const khovtMasterVtControllerDeleteById = (id: string) => {
-  return drcInstance<unknown>({ url: `/khovt-master-vts/${id}`, method: 'DELETE' });
-};
 
-export const getKhovtMasterVtControllerDeleteByIdMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>,
-  TError,
-  { id: string },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
 
-  const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>, { id: string }> = (
-    props,
-  ) => {
-    const { id } = props ?? {};
+export const khovtMasterVtControllerDeleteById = (
+    id: string,
+ ) => {
+      
+      
+      return drcInstance<unknown>(
+      {url: `/khovt-master-vts/${id}`, method: 'DELETE'
+    },
+      );
+    }
+  
 
-    return khovtMasterVtControllerDeleteById(id);
-  };
 
-  return { mutationFn, ...mutationOptions };
-};
+export const getKhovtMasterVtControllerDeleteByIdMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>, TError,{id: string}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
 
-export type KhovtMasterVtControllerDeleteByIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>
->;
+      
 
-export type KhovtMasterVtControllerDeleteByIdMutationError = ErrorType<unknown>;
 
-export const useKhovtMasterVtControllerDeleteById = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>,
-  TError,
-  { id: string },
-  TContext
-> => {
-  const mutationOptions = getKhovtMasterVtControllerDeleteByIdMutationOptions(options);
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
 
-  return useMutation(mutationOptions);
-};
-export const khovtMasterVtControllerCreate = (newKhovtMasterVt: NewKhovtMasterVt) => {
-  return drcInstance<KhovtMasterVt>({
-    url: `/khovt-master-vts`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: newKhovtMasterVt,
-  });
-};
+          return  khovtMasterVtControllerDeleteById(id,)
+        }
 
-export const getKhovtMasterVtControllerCreateMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>,
-    TError,
-    { data: NewKhovtMasterVt },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>,
-  TError,
-  { data: NewKhovtMasterVt },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
+        
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>,
-    { data: NewKhovtMasterVt }
-  > = (props) => {
-    const { data } = props ?? {};
 
-    return khovtMasterVtControllerCreate(data);
-  };
+  return  { mutationFn, ...mutationOptions }}
 
-  return { mutationFn, ...mutationOptions };
-};
+    export type KhovtMasterVtControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>>
+    
+    export type KhovtMasterVtControllerDeleteByIdMutationError = ErrorType<unknown>
 
-export type KhovtMasterVtControllerCreateMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>
->;
-export type KhovtMasterVtControllerCreateMutationBody = NewKhovtMasterVt;
-export type KhovtMasterVtControllerCreateMutationError = ErrorType<unknown>;
+    export const useKhovtMasterVtControllerDeleteById = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>, TError,{id: string}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtMasterVtControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
 
-export const useKhovtMasterVtControllerCreate = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>,
-    TError,
-    { data: NewKhovtMasterVt },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>,
-  TError,
-  { data: NewKhovtMasterVt },
-  TContext
-> => {
-  const mutationOptions = getKhovtMasterVtControllerCreateMutationOptions(options);
+      const mutationOptions = getKhovtMasterVtControllerDeleteByIdMutationOptions(options);
 
-  return useMutation(mutationOptions);
-};
-export const khovtMasterVtControllerFind = (params?: KhovtMasterVtControllerFindParams, signal?: AbortSignal) => {
-  return drcInstance<KhovtMasterVtWithRelations[]>({ url: `/khovt-master-vts`, method: 'GET', params, signal });
-};
+      return useMutation(mutationOptions);
+    }
+    export const khovtMasterVtControllerCreate = (
+    newKhovtMasterVt: NewKhovtMasterVt,
+ ) => {
+      
+      
+      return drcInstance<KhovtMasterVt>(
+      {url: `/khovt-master-vts`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newKhovtMasterVt
+    },
+      );
+    }
+  
 
-export const getKhovtMasterVtControllerFindQueryKey = (params?: KhovtMasterVtControllerFindParams) => {
-  return [`/khovt-master-vts`, ...(params ? [params] : [])] as const;
-};
 
-export const getKhovtMasterVtControllerFindQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtMasterVtControllerFind>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterVtControllerFindParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>, TError, TData>>;
-  },
+export const getKhovtMasterVtControllerCreateMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>, TError,{data: NewKhovtMasterVt}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>, TError,{data: NewKhovtMasterVt}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>, {data: NewKhovtMasterVt}> = (props) => {
+          const {data} = props ?? {};
+
+          return  khovtMasterVtControllerCreate(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type KhovtMasterVtControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>>
+    export type KhovtMasterVtControllerCreateMutationBody = NewKhovtMasterVt
+    export type KhovtMasterVtControllerCreateMutationError = ErrorType<unknown>
+
+    export const useKhovtMasterVtControllerCreate = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>, TError,{data: NewKhovtMasterVt}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtMasterVtControllerCreate>>,
+        TError,
+        {data: NewKhovtMasterVt},
+        TContext
+      > => {
+
+      const mutationOptions = getKhovtMasterVtControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const khovtMasterVtControllerFind = (
+    params?: KhovtMasterVtControllerFindParams,
+ signal?: AbortSignal
 ) => {
-  const { query: queryOptions } = options ?? {};
+      
+      
+      return drcInstance<KhovtMasterVtWithRelations[]>(
+      {url: `/khovt-master-vts`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtMasterVtControllerFindQueryKey(params);
+export const getKhovtMasterVtControllerFindQueryKey = (params?: KhovtMasterVtControllerFindParams,) => {
+    return [`/khovt-master-vts`, ...(params ? [params]: [])] as const;
+    }
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>> = ({ signal }) =>
-    khovtMasterVtControllerFind(params, signal);
+    
+export const getKhovtMasterVtControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof khovtMasterVtControllerFind>>, TError = ErrorType<unknown>>(params?: KhovtMasterVtControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>, TError, TData>>, }
+) => {
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtMasterVtControllerFind>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+const {query: queryOptions} = options ?? {};
 
-export type KhovtMasterVtControllerFindQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterVtControllerFind>>
->;
-export type KhovtMasterVtControllerFindQueryError = ErrorType<unknown>;
+  const queryKey =  queryOptions?.queryKey ?? getKhovtMasterVtControllerFindQueryKey(params);
 
-export const useKhovtMasterVtControllerFind = <
-  TData = Awaited<ReturnType<typeof khovtMasterVtControllerFind>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterVtControllerFindParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtMasterVtControllerFindQueryOptions(params, options);
+  
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>> = ({ signal }) => khovtMasterVtControllerFind(params, signal);
 
-  query.queryKey = queryOptions.queryKey;
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtMasterVtControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>>
+export type KhovtMasterVtControllerFindQueryError = ErrorType<unknown>
+
+export const useKhovtMasterVtControllerFind = <TData = Awaited<ReturnType<typeof khovtMasterVtControllerFind>>, TError = ErrorType<unknown>>(
+ params?: KhovtMasterVtControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterVtControllerFind>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtMasterVtControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
+
+
+

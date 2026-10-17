@@ -5,13 +5,13 @@ type Props = {
   lead: string;
 };
 
-function AuthHeader({ title, lead }: Props) {
+function AuthHeader({ title, lead }: Readonly<Props>) {
   return (
-    <div className="header bg-gradient-info py-7 py-lg-8 pt-lg-9">
+    <div className="header bg-gradient-info py-5 py-lg-5 pt-lg-6">
       <Container>
         <div className="header-body text-center mb-7">
           <Row className="justify-content-center">
-            <Col className="px-5" lg="6" md="8" xl="5">
+            <Col className="px-5" lg="6" md="8" xl="5" style={{ marginTop: '120px' }}>
               {title ? <h1 className="text-white">{title}</h1> : null}
               {lead ? <p className="text-lead text-white">{lead}</p> : null}
             </Col>

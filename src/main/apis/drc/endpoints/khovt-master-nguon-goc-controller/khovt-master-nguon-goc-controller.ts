@@ -5,7 +5,10 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query'
 import type {
   MutationFunction,
   QueryFunction,
@@ -13,388 +16,402 @@ import type {
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
+  UseQueryResult
+} from '@tanstack/react-query'
 import type {
+  KhoMasterNuoc,
   KhovtMasterNguonGoc,
   KhovtMasterNguonGocControllerCountParams,
   KhovtMasterNguonGocControllerFindByIdParams,
+  KhovtMasterNguonGocControllerFindNuocParams,
   KhovtMasterNguonGocControllerFindParams,
   KhovtMasterNguonGocPartial,
   KhovtMasterNguonGocWithRelations,
   LoopbackCount,
-  NewKhovtMasterNguonGoc,
-} from '../../models';
+  NewKhovtMasterNguonGoc
+} from '../../models'
 import { drcInstance } from '../../../configs/mutator/drc-instance';
 import type { ErrorType } from '../../../configs/mutator/drc-instance';
 
+
+
 export const khovtMasterNguonGocControllerCount = (
-  params?: KhovtMasterNguonGocControllerCountParams,
-  signal?: AbortSignal,
+    params?: KhovtMasterNguonGocControllerCountParams,
+ signal?: AbortSignal
 ) => {
-  return drcInstance<LoopbackCount>({ url: `/khovt-master-nguon-gocs/count`, method: 'GET', params, signal });
-};
+      
+      
+      return drcInstance<LoopbackCount>(
+      {url: `/khovt-master-nguon-gocs/count`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-export const getKhovtMasterNguonGocControllerCountQueryKey = (params?: KhovtMasterNguonGocControllerCountParams) => {
-  return [`/khovt-master-nguon-gocs/count`, ...(params ? [params] : [])] as const;
-};
+export const getKhovtMasterNguonGocControllerCountQueryKey = (params?: KhovtMasterNguonGocControllerCountParams,) => {
+    return [`/khovt-master-nguon-gocs/count`, ...(params ? [params]: [])] as const;
+    }
 
-export const getKhovtMasterNguonGocControllerCountQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterNguonGocControllerCountParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>, TError, TData>>;
-  },
+    
+export const getKhovtMasterNguonGocControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>, TError = ErrorType<unknown>>(params?: KhovtMasterNguonGocControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>, TError, TData>>, }
 ) => {
-  const { query: queryOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtMasterNguonGocControllerCountQueryKey(params);
+const {query: queryOptions} = options ?? {};
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>> = ({ signal }) =>
-    khovtMasterNguonGocControllerCount(params, signal);
+  const queryKey =  queryOptions?.queryKey ?? getKhovtMasterNguonGocControllerCountQueryKey(params);
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+  
 
-export type KhovtMasterNguonGocControllerCountQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>
->;
-export type KhovtMasterNguonGocControllerCountQueryError = ErrorType<unknown>;
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>> = ({ signal }) => khovtMasterNguonGocControllerCount(params, signal);
 
-export const useKhovtMasterNguonGocControllerCount = <
-  TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterNguonGocControllerCountParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtMasterNguonGocControllerCountQueryOptions(params, options);
+      
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+      
 
-  query.queryKey = queryOptions.queryKey;
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtMasterNguonGocControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>>
+export type KhovtMasterNguonGocControllerCountQueryError = ErrorType<unknown>
+
+export const useKhovtMasterNguonGocControllerCount = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>, TError = ErrorType<unknown>>(
+ params?: KhovtMasterNguonGocControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCount>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtMasterNguonGocControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
+
+
+
+export const khovtMasterNguonGocControllerFindNuoc = (
+    params?: KhovtMasterNguonGocControllerFindNuocParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return drcInstance<KhoMasterNuoc[]>(
+      {url: `/khovt-master-nguon-gocs/nuoc`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+export const getKhovtMasterNguonGocControllerFindNuocQueryKey = (params?: KhovtMasterNguonGocControllerFindNuocParams,) => {
+    return [`/khovt-master-nguon-gocs/nuoc`, ...(params ? [params]: [])] as const;
+    }
+
+    
+export const getKhovtMasterNguonGocControllerFindNuocQueryOptions = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindNuoc>>, TError = ErrorType<unknown>>(params?: KhovtMasterNguonGocControllerFindNuocParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindNuoc>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getKhovtMasterNguonGocControllerFindNuocQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindNuoc>>> = ({ signal }) => khovtMasterNguonGocControllerFindNuoc(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindNuoc>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtMasterNguonGocControllerFindNuocQueryResult = NonNullable<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindNuoc>>>
+export type KhovtMasterNguonGocControllerFindNuocQueryError = ErrorType<unknown>
+
+export const useKhovtMasterNguonGocControllerFindNuoc = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindNuoc>>, TError = ErrorType<unknown>>(
+ params?: KhovtMasterNguonGocControllerFindNuocParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindNuoc>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtMasterNguonGocControllerFindNuocQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
 
 export const khovtMasterNguonGocControllerUpdateById = (
-  id: number,
-  khovtMasterNguonGocPartial: KhovtMasterNguonGocPartial,
+    id: number,
+    khovtMasterNguonGocPartial: KhovtMasterNguonGocPartial,
+ ) => {
+      
+      
+      return drcInstance<unknown>(
+      {url: `/khovt-master-nguon-gocs/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: khovtMasterNguonGocPartial
+    },
+      );
+    }
+  
+
+
+export const getKhovtMasterNguonGocControllerUpdateByIdMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>, TError,{id: number;data: KhovtMasterNguonGocPartial}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>, TError,{id: number;data: KhovtMasterNguonGocPartial}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>, {id: number;data: KhovtMasterNguonGocPartial}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  khovtMasterNguonGocControllerUpdateById(id,data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type KhovtMasterNguonGocControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>>
+    export type KhovtMasterNguonGocControllerUpdateByIdMutationBody = KhovtMasterNguonGocPartial
+    export type KhovtMasterNguonGocControllerUpdateByIdMutationError = ErrorType<unknown>
+
+    export const useKhovtMasterNguonGocControllerUpdateById = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>, TError,{id: number;data: KhovtMasterNguonGocPartial}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>,
+        TError,
+        {id: number;data: KhovtMasterNguonGocPartial},
+        TContext
+      > => {
+
+      const mutationOptions = getKhovtMasterNguonGocControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const khovtMasterNguonGocControllerFindById = (
+    id: number,
+    params?: KhovtMasterNguonGocControllerFindByIdParams,
+ signal?: AbortSignal
 ) => {
-  return drcInstance<unknown>({
-    url: `/khovt-master-nguon-gocs/${id}`,
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    data: khovtMasterNguonGocPartial,
-  });
-};
+      
+      
+      return drcInstance<KhovtMasterNguonGocWithRelations>(
+      {url: `/khovt-master-nguon-gocs/${id}`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-export const getKhovtMasterNguonGocControllerUpdateByIdMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>,
-    TError,
-    { id: number; data: KhovtMasterNguonGocPartial },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>,
-  TError,
-  { id: number; data: KhovtMasterNguonGocPartial },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
+export const getKhovtMasterNguonGocControllerFindByIdQueryKey = (id: number,
+    params?: KhovtMasterNguonGocControllerFindByIdParams,) => {
+    return [`/khovt-master-nguon-gocs/${id}`, ...(params ? [params]: [])] as const;
+    }
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>,
-    { id: number; data: KhovtMasterNguonGocPartial }
-  > = (props) => {
-    const { id, data } = props ?? {};
-
-    return khovtMasterNguonGocControllerUpdateById(id, data);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type KhovtMasterNguonGocControllerUpdateByIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>
->;
-export type KhovtMasterNguonGocControllerUpdateByIdMutationBody = KhovtMasterNguonGocPartial;
-export type KhovtMasterNguonGocControllerUpdateByIdMutationError = ErrorType<unknown>;
-
-export const useKhovtMasterNguonGocControllerUpdateById = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>,
-    TError,
-    { id: number; data: KhovtMasterNguonGocPartial },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerUpdateById>>,
-  TError,
-  { id: number; data: KhovtMasterNguonGocPartial },
-  TContext
-> => {
-  const mutationOptions = getKhovtMasterNguonGocControllerUpdateByIdMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};
-export const khovtMasterNguonGocControllerFindById = (
-  id: number,
-  params?: KhovtMasterNguonGocControllerFindByIdParams,
-  signal?: AbortSignal,
+    
+export const getKhovtMasterNguonGocControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>, TError = ErrorType<unknown>>(id: number,
+    params?: KhovtMasterNguonGocControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>, TError, TData>>, }
 ) => {
-  return drcInstance<KhovtMasterNguonGocWithRelations>({
-    url: `/khovt-master-nguon-gocs/${id}`,
-    method: 'GET',
-    params,
-    signal,
-  });
-};
 
-export const getKhovtMasterNguonGocControllerFindByIdQueryKey = (
-  id: number,
-  params?: KhovtMasterNguonGocControllerFindByIdParams,
-) => {
-  return [`/khovt-master-nguon-gocs/${id}`, ...(params ? [params] : [])] as const;
-};
+const {query: queryOptions} = options ?? {};
 
-export const getKhovtMasterNguonGocControllerFindByIdQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>,
-  TError = ErrorType<unknown>,
->(
-  id: number,
-  params?: KhovtMasterNguonGocControllerFindByIdParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>, TError, TData>>;
-  },
-) => {
-  const { query: queryOptions } = options ?? {};
+  const queryKey =  queryOptions?.queryKey ?? getKhovtMasterNguonGocControllerFindByIdQueryKey(id,params);
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtMasterNguonGocControllerFindByIdQueryKey(id, params);
+  
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>> = ({ signal }) =>
-    khovtMasterNguonGocControllerFindById(id, params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>> = ({ signal }) => khovtMasterNguonGocControllerFindById(id,params, signal);
 
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+      
 
-export type KhovtMasterNguonGocControllerFindByIdQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>
->;
-export type KhovtMasterNguonGocControllerFindByIdQueryError = ErrorType<unknown>;
+      
 
-export const useKhovtMasterNguonGocControllerFindById = <
-  TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>,
-  TError = ErrorType<unknown>,
->(
-  id: number,
-  params?: KhovtMasterNguonGocControllerFindByIdParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtMasterNguonGocControllerFindByIdQueryOptions(id, params, options);
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>, TError, TData> & { queryKey: QueryKey }
+}
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+export type KhovtMasterNguonGocControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>>
+export type KhovtMasterNguonGocControllerFindByIdQueryError = ErrorType<unknown>
 
-  query.queryKey = queryOptions.queryKey;
+export const useKhovtMasterNguonGocControllerFindById = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>, TError = ErrorType<unknown>>(
+ id: number,
+    params?: KhovtMasterNguonGocControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFindById>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtMasterNguonGocControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
 
-export const khovtMasterNguonGocControllerDeleteById = (id: number) => {
-  return drcInstance<unknown>({ url: `/khovt-master-nguon-gocs/${id}`, method: 'DELETE' });
-};
 
-export const getKhovtMasterNguonGocControllerDeleteByIdMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>,
-    TError,
-    { id: number },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>,
-  TError,
-  { id: number },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>,
-    { id: number }
-  > = (props) => {
-    const { id } = props ?? {};
+export const khovtMasterNguonGocControllerDeleteById = (
+    id: number,
+ ) => {
+      
+      
+      return drcInstance<unknown>(
+      {url: `/khovt-master-nguon-gocs/${id}`, method: 'DELETE'
+    },
+      );
+    }
+  
 
-    return khovtMasterNguonGocControllerDeleteById(id);
-  };
 
-  return { mutationFn, ...mutationOptions };
-};
+export const getKhovtMasterNguonGocControllerDeleteByIdMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>, TError,{id: number}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>, TError,{id: number}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
 
-export type KhovtMasterNguonGocControllerDeleteByIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>
->;
+      
 
-export type KhovtMasterNguonGocControllerDeleteByIdMutationError = ErrorType<unknown>;
 
-export const useKhovtMasterNguonGocControllerDeleteById = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>,
-    TError,
-    { id: number },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>,
-  TError,
-  { id: number },
-  TContext
-> => {
-  const mutationOptions = getKhovtMasterNguonGocControllerDeleteByIdMutationOptions(options);
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
 
-  return useMutation(mutationOptions);
-};
-export const khovtMasterNguonGocControllerCreate = (newKhovtMasterNguonGoc: NewKhovtMasterNguonGoc) => {
-  return drcInstance<KhovtMasterNguonGoc>({
-    url: `/khovt-master-nguon-gocs`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: newKhovtMasterNguonGoc,
-  });
-};
+          return  khovtMasterNguonGocControllerDeleteById(id,)
+        }
 
-export const getKhovtMasterNguonGocControllerCreateMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>,
-    TError,
-    { data: NewKhovtMasterNguonGoc },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>,
-  TError,
-  { data: NewKhovtMasterNguonGoc },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
+        
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>,
-    { data: NewKhovtMasterNguonGoc }
-  > = (props) => {
-    const { data } = props ?? {};
 
-    return khovtMasterNguonGocControllerCreate(data);
-  };
+  return  { mutationFn, ...mutationOptions }}
 
-  return { mutationFn, ...mutationOptions };
-};
+    export type KhovtMasterNguonGocControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>>
+    
+    export type KhovtMasterNguonGocControllerDeleteByIdMutationError = ErrorType<unknown>
 
-export type KhovtMasterNguonGocControllerCreateMutationResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>
->;
-export type KhovtMasterNguonGocControllerCreateMutationBody = NewKhovtMasterNguonGoc;
-export type KhovtMasterNguonGocControllerCreateMutationError = ErrorType<unknown>;
+    export const useKhovtMasterNguonGocControllerDeleteById = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>, TError,{id: number}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtMasterNguonGocControllerDeleteById>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
 
-export const useKhovtMasterNguonGocControllerCreate = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>,
-    TError,
-    { data: NewKhovtMasterNguonGoc },
-    TContext
-  >;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>,
-  TError,
-  { data: NewKhovtMasterNguonGoc },
-  TContext
-> => {
-  const mutationOptions = getKhovtMasterNguonGocControllerCreateMutationOptions(options);
+      const mutationOptions = getKhovtMasterNguonGocControllerDeleteByIdMutationOptions(options);
 
-  return useMutation(mutationOptions);
-};
-export const khovtMasterNguonGocControllerFind = (
-  params?: KhovtMasterNguonGocControllerFindParams,
-  signal?: AbortSignal,
+      return useMutation(mutationOptions);
+    }
+    export const khovtMasterNguonGocControllerCreate = (
+    newKhovtMasterNguonGoc: NewKhovtMasterNguonGoc,
+ ) => {
+      
+      
+      return drcInstance<KhovtMasterNguonGoc>(
+      {url: `/khovt-master-nguon-gocs`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newKhovtMasterNguonGoc
+    },
+      );
+    }
+  
+
+
+export const getKhovtMasterNguonGocControllerCreateMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>, TError,{data: NewKhovtMasterNguonGoc}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>, TError,{data: NewKhovtMasterNguonGoc}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>, {data: NewKhovtMasterNguonGoc}> = (props) => {
+          const {data} = props ?? {};
+
+          return  khovtMasterNguonGocControllerCreate(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type KhovtMasterNguonGocControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>>
+    export type KhovtMasterNguonGocControllerCreateMutationBody = NewKhovtMasterNguonGoc
+    export type KhovtMasterNguonGocControllerCreateMutationError = ErrorType<unknown>
+
+    export const useKhovtMasterNguonGocControllerCreate = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>, TError,{data: NewKhovtMasterNguonGoc}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof khovtMasterNguonGocControllerCreate>>,
+        TError,
+        {data: NewKhovtMasterNguonGoc},
+        TContext
+      > => {
+
+      const mutationOptions = getKhovtMasterNguonGocControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    export const khovtMasterNguonGocControllerFind = (
+    params?: KhovtMasterNguonGocControllerFindParams,
+ signal?: AbortSignal
 ) => {
-  return drcInstance<KhovtMasterNguonGocWithRelations[]>({
-    url: `/khovt-master-nguon-gocs`,
-    method: 'GET',
-    params,
-    signal,
-  });
-};
+      
+      
+      return drcInstance<KhovtMasterNguonGocWithRelations[]>(
+      {url: `/khovt-master-nguon-gocs`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
 
-export const getKhovtMasterNguonGocControllerFindQueryKey = (params?: KhovtMasterNguonGocControllerFindParams) => {
-  return [`/khovt-master-nguon-gocs`, ...(params ? [params] : [])] as const;
-};
+export const getKhovtMasterNguonGocControllerFindQueryKey = (params?: KhovtMasterNguonGocControllerFindParams,) => {
+    return [`/khovt-master-nguon-gocs`, ...(params ? [params]: [])] as const;
+    }
 
-export const getKhovtMasterNguonGocControllerFindQueryOptions = <
-  TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterNguonGocControllerFindParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>, TError, TData>>;
-  },
+    
+export const getKhovtMasterNguonGocControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>, TError = ErrorType<unknown>>(params?: KhovtMasterNguonGocControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>, TError, TData>>, }
 ) => {
-  const { query: queryOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getKhovtMasterNguonGocControllerFindQueryKey(params);
+const {query: queryOptions} = options ?? {};
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>> = ({ signal }) =>
-    khovtMasterNguonGocControllerFind(params, signal);
+  const queryKey =  queryOptions?.queryKey ?? getKhovtMasterNguonGocControllerFindQueryKey(params);
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
+  
 
-export type KhovtMasterNguonGocControllerFindQueryResult = NonNullable<
-  Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>
->;
-export type KhovtMasterNguonGocControllerFindQueryError = ErrorType<unknown>;
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>> = ({ signal }) => khovtMasterNguonGocControllerFind(params, signal);
 
-export const useKhovtMasterNguonGocControllerFind = <
-  TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>,
-  TError = ErrorType<unknown>,
->(
-  params?: KhovtMasterNguonGocControllerFindParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>, TError, TData>>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getKhovtMasterNguonGocControllerFindQueryOptions(params, options);
+      
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+      
 
-  query.queryKey = queryOptions.queryKey;
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type KhovtMasterNguonGocControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>>
+export type KhovtMasterNguonGocControllerFindQueryError = ErrorType<unknown>
+
+export const useKhovtMasterNguonGocControllerFind = <TData = Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>, TError = ErrorType<unknown>>(
+ params?: KhovtMasterNguonGocControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof khovtMasterNguonGocControllerFind>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getKhovtMasterNguonGocControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
+
+
+

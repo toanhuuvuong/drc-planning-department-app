@@ -1,4 +1,10 @@
+.table-responsive{
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .react-bootstrap-table{
+  overflow-y: auto;
   .table{
     margin-bottom: 1.25rem;
     border-bottom: 1px solid $gray-200;

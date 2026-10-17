@@ -1,8 +1,6 @@
 import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from 'main/configs/react-query';
 import store from 'main/redux/store';
-import { EnvUtil } from 'main/utils';
 import { PropsWithChildren } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
@@ -28,12 +26,7 @@ const ComposedProvider = composeComponents(
 );
 
 function AppProvider({ children }: PropsWithChildren) {
-  return (
-    <ComposedProvider>
-      {EnvUtil.isDevelopement() && <ReactQueryDevtools />}
-      {children}
-    </ComposedProvider>
-  );
+  return <ComposedProvider>{children}</ComposedProvider>;
 }
 
 export default AppProvider;

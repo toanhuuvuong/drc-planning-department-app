@@ -5,19 +5,27 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
+import type { KhoMasterNuocWithRelations } from './khoMasterNuocWithRelations';
 
 /**
  * (tsType: KhovtMasterNguonGocWithRelations, schemaOptions: { includeRelations: true })
  */
 export interface KhovtMasterNguonGocWithRelations {
   /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  foreignKey?: unknown;
+  /** @nullable */
   ghiChu?: string | null;
   /** */
   id?: number;
-  /** */
-  maNguonGoc: string;
-  /** */
-  nuocId: number;
+  nuoc?: KhoMasterNuocWithRelations;
+  nuocId?: string;
   /** */
   tenNhaSx: string;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

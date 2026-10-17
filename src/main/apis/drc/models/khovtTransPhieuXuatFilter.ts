@@ -6,10 +6,13 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { KhovtTransPhieuXuatFilterFields } from './khovtTransPhieuXuatFilterFields';
+import type { KhovtTransPhieuXuatFilterIncludeItem } from './khovtTransPhieuXuatFilterIncludeItem';
 import type { KhovtTransPhieuXuatFilterOrder } from './khovtTransPhieuXuatFilterOrder';
+import type { KhovtTransPhieuXuatFilterWhere } from './khovtTransPhieuXuatFilterWhere';
 
 export interface KhovtTransPhieuXuatFilter {
   fields?: KhovtTransPhieuXuatFilterFields;
+  include?: KhovtTransPhieuXuatFilterIncludeItem[];
   /** @minimum 1 */
   limit?: number;
   /** @minimum 0 */
@@ -17,4 +20,5 @@ export interface KhovtTransPhieuXuatFilter {
   order?: KhovtTransPhieuXuatFilterOrder;
   /** @minimum 0 */
   skip?: number;
+  where?: KhovtTransPhieuXuatFilterWhere;
 }

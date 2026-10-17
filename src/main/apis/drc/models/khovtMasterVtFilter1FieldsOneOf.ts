@@ -7,9 +7,15 @@
  */
 
 export type KhovtMasterVtFilter1FieldsOneOf = {
+  createTime?: boolean;
+  createUser?: boolean;
   dvt?: boolean;
   ghiChu?: boolean;
   maNhom?: boolean;
   maVt?: boolean;
+  tenGoiNho?: boolean;
   tenVt?: boolean;
+  thoiHanLuuKho?: boolean;
+  updateTime?: boolean;
+  updateUser?: boolean;
 };

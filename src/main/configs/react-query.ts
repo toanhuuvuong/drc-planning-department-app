@@ -4,9 +4,14 @@ import { AxiosError } from 'axios';
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
       retry: false,
-      staleTime: Infinity,
+      staleTime: 5 * 60 * 1000, // how long the data is considered fresh
+      refetchInterval: false, // how often to refetch the data
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchOnMount: 'always',
+      gcTime: 0, // disable caching
+      placeholderData: (prev: any) => prev, // keep previous data
     },
   },
 });

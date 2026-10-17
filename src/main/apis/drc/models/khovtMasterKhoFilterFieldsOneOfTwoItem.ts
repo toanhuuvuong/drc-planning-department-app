@@ -6,8 +6,8 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type KhovtMasterKhoFilterFieldsOneOfTwoItem =
-  (typeof KhovtMasterKhoFilterFieldsOneOfTwoItem)[keyof typeof KhovtMasterKhoFilterFieldsOneOfTwoItem];
+export type KhovtMasterKhoFilterFieldsOneOfTwoItem = typeof KhovtMasterKhoFilterFieldsOneOfTwoItem[keyof typeof KhovtMasterKhoFilterFieldsOneOfTwoItem];
+
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const KhovtMasterKhoFilterFieldsOneOfTwoItem = {
@@ -15,4 +15,8 @@ export const KhovtMasterKhoFilterFieldsOneOfTwoItem = {
   id: 'id',
   maKho: 'maKho',
   tenKho: 'tenKho',
+  createTime: 'createTime',
+  updateTime: 'updateTime',
+  createUser: 'createUser',
+  updateUser: 'updateUser',
 } as const;

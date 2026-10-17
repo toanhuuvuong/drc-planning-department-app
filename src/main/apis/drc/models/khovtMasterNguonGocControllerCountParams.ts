@@ -7,5 +7,5 @@
  */
 
 export type KhovtMasterNguonGocControllerCountParams = {
-  where?: { [key: string]: unknown };
+where?: { [key: string]: unknown };
 };

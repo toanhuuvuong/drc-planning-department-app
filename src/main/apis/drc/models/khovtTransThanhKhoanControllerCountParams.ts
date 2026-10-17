@@ -7,5 +7,5 @@
  */
 
 export type KhovtTransThanhKhoanControllerCountParams = {
-  where?: { [key: string]: unknown };
+where?: { [key: string]: unknown };
 };

@@ -7,8 +7,12 @@
  */
 
 export type KhovtMasterKhoFilter1FieldsOneOf = {
+  createTime?: boolean;
+  createUser?: boolean;
   ghiChu?: boolean;
   id?: boolean;
   maKho?: boolean;
   tenKho?: boolean;
+  updateTime?: boolean;
+  updateUser?: boolean;
 };

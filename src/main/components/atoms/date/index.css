@@ -1,0 +1,12 @@
+.custom-datepicker .rdtPicker {
+  position: fixed;
+  z-index: 1300 !important;
+}
+
+.custom-datepicker .rdtPicker {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-datepicker {
+  overflow: visible;
+}

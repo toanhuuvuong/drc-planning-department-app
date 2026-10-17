@@ -1,5 +1,4 @@
 import Login from 'main/components/pages/auth/login';
-import Register from 'main/components/pages/auth/register';
 import { Page } from 'main/constants';
 import AuthLayout from 'main/layouts/auth';
 import { Navigate, Route } from 'react-router-dom';
@@ -14,7 +13,6 @@ const authRouter = (
       </ForwardRoute>
     }>
     <Route path="login" element={<Login />} />
-    <Route path="register" element={<Register />} />
     <Route path="*" element={<Navigate to={Page.LOGIN.PATH} replace />} />
   </Route>
 );

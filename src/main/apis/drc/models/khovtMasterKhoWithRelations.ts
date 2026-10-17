@@ -11,6 +11,10 @@
  */
 export interface KhovtMasterKhoWithRelations {
   /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  /** @nullable */
   ghiChu?: string | null;
   /** */
   id?: number;
@@ -18,4 +22,8 @@ export interface KhovtMasterKhoWithRelations {
   maKho: string;
   /** */
   tenKho: string;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

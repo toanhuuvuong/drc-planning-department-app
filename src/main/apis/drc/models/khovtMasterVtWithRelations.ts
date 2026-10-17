@@ -5,19 +5,33 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
+import type { KhovtMasterNhomWithRelations } from './khovtMasterNhomWithRelations';
 
 /**
  * (tsType: KhovtMasterVtWithRelations, schemaOptions: { includeRelations: true })
  */
 export interface KhovtMasterVtWithRelations {
+  /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
   /** */
   dvt: string;
+  foreignKey?: unknown;
   /** @nullable */
   ghiChu?: string | null;
-  /** @nullable */
-  maNhom?: string | null;
+  maNhom?: string;
   /** */
   maVt: string;
+  nhomvt?: KhovtMasterNhomWithRelations;
+  /** @nullable */
+  tenGoiNho?: string | null;
   /** */
   tenVt: string;
+  /** @nullable */
+  thoiHanLuuKho?: number | null;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

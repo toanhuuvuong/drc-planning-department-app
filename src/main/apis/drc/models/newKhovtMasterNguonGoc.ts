@@ -11,11 +11,16 @@
  */
 export interface NewKhovtMasterNguonGoc {
   /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  /** @nullable */
   ghiChu?: string | null;
-  /** */
-  maNguonGoc: string;
-  /** */
-  nuocId: number;
+  nuocId?: string;
   /** */
   tenNhaSx: string;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

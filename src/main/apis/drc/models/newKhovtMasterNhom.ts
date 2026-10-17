@@ -11,9 +11,17 @@
  */
 export interface NewKhovtMasterNhom {
   /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  /** @nullable */
   ghiChu?: string | null;
   /** */
   maNhom: string;
   /** */
   tenNhom: string;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

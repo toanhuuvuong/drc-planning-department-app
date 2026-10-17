@@ -1,0 +1,66 @@
+import ExcelJS from 'exceljs';
+import moment from 'moment';
+
+/**
+ * Xuất dữ liệu JSON ra file Excel.
+ * @param {Array} jsonData - Dữ liệu JSON từ API (danh sách các đối tượng).
+ * @param headerMap - Tên các cột header trong file Excel.
+ * @param excludedFields - Các field dữ liệu trong jsonData không muốn xuất ra file Excel.
+ */
+async function exportJsonToExcel(
+  jsonData: Array<Record<string, any>>,
+  headerMap: Record<string, string>,
+  excludedFields: string[] | null,
+) {
+  // Tạo workbook và worksheet
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Sheet1');
+
+  if (!jsonData || jsonData.length === 0) {
+    throw new Error('Không có dữ liệu để xuất file');
+  }
+
+  // Tạo tiêu đề cột từ headerMap hoặc tên biến mặc định
+  const columns = Object.keys(jsonData[0])
+    .filter((key) => !excludedFields?.includes(key)) // Loại bỏ các trường không mong muốn
+    .map((key) => ({
+      header: headerMap?.[key] ?? key,
+      key: key,
+      width: 20,
+      style: key.toLowerCase().includes('ngay') ? { numFmt: 'dd-mm-yyyy' } : {}, // Định dạng ngày nếu cần
+      font: { bold: true }, // In đậm tiêu đề
+    }));
+
+  try {
+    // Thêm tiêu đề cột vào worksheet
+    worksheet.columns = columns;
+    // Thêm dòng tiêu đề với font in đậm
+    const headerRow = worksheet.getRow(1);
+    headerRow.font = { bold: true }; // In đậm tiêu đề
+    
+    // Thêm dữ liệu từng hàng vào worksheet
+    jsonData.forEach((item) => {
+      const filteredItem = { ...item };
+      if (excludedFields && excludedFields.length > 0) {
+        excludedFields.forEach((field) => delete filteredItem[field]);
+      }
+
+      Object.keys(filteredItem).forEach((key) => {
+        // Chuyển đổi chuỗi ISO thành đối tượng Date nếu hợp lệ
+        if (key.toLowerCase().includes('ngay')) {
+          filteredItem[key] = moment(filteredItem[key]).isValid()
+            ? moment(filteredItem[key]).toDate()
+            : filteredItem[key];
+        }
+      });
+      worksheet.addRow(filteredItem);
+    });
+
+    // Ghi dữ liệu ra buffer
+    return await workbook.xlsx.writeBuffer();
+  } catch (error: any) {
+    throw new Error('Lỗi khi xuất file:', error?.message);
+  }
+}
+
+export default exportJsonToExcel;

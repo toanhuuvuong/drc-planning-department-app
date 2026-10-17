@@ -8,5 +8,5 @@
 import type { KhovtTransThanhKhoanFilter } from './khovtTransThanhKhoanFilter';
 
 export type KhovtTransThanhKhoanControllerFindByIdParams = {
-  filter?: KhovtTransThanhKhoanFilter;
+filter?: KhovtTransThanhKhoanFilter;
 };

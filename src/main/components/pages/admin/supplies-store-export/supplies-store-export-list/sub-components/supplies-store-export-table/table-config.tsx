@@ -1,72 +1,108 @@
-import { KhovtTransPhieuXuatWithRelations } from 'main/apis/drc/models';
-import { Page } from 'main/constants';
-import cellEditFactory from 'react-bootstrap-table2-editor';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import { Link } from 'react-router-dom';
-
-const cellEdit = cellEditFactory({
-  mode: 'dbclick',
-  blurToSave: true,
-});
+import { DateFormat } from 'main/constants';
+import { ExportStatus, FieldName } from 'main/constants/enums';
+import { cellDateFormatter, generateColumnStyle } from 'main/utils';
+import moment from 'moment';
+import { SizePerPageRendererOptions } from 'react-bootstrap-table-next';
 
 const columns = [
   {
-    dataField: 'soPhieu',
+    dataField: FieldName.UNIQUE_KEY,
+    hidden: true,
+    csvExport: false,
+  },
+  {
+    dataField: FieldName.ID,
+    hidden: true,
+    csvExport: false,
+  },
+  {
+    dataField: FieldName.SO_PHIEU,
     text: 'Số phiếu xuất',
     sort: true,
+    ...generateColumnStyle(),
   },
   {
-    dataField: 'id',
+    dataField: FieldName.MA_VT,
     text: 'Mã vật tư',
     sort: true,
+    ...generateColumnStyle(),
   },
   {
-    dataField: 'khoXuat',
+    dataField: FieldName.TEN_KHO,
     text: 'Kho xuất',
     sort: true,
+    ...generateColumnStyle(),
   },
   {
-    dataField: 'khoNhap',
-    text: 'Kho nhập',
+    dataField: FieldName.TEN_DON_VI,
+    text: 'Đơn vị nhận',
     sort: true,
+    ...generateColumnStyle(),
   },
   {
-    dataField: 'nguoiTaoPhieu',
+    dataField: FieldName.SO_LUONG_YEU_CAU,
+    text: 'Số lượng yêu cầu',
+    sort: true,
+    ...generateColumnStyle(),
+  },
+  {
+    dataField: FieldName.SO_LUONG_THUC_TE,
+    text: 'Số lượng thực xuất',
+    sort: true,
+    ...generateColumnStyle(),
+  },
+  {
+    dataField: FieldName.NGUOI_TAO_PHIEU,
     text: 'Người tạo phiếu',
     sort: true,
+    ...generateColumnStyle(),
   },
   {
-    dataField: 'ngayXuat',
+    dataField: FieldName.NGAY_XUAT,
     text: 'Ngày xuất kho',
     sort: true,
+    formatter: cellDateFormatter(DateFormat.DATE_ONLY_VN),
+    csvFormatter: (cell: string, _: any) => {
+      if (!cell) {
+        return null;
+      }
+      return moment(cell).format(DateFormat.DATE_ONLY_VN);
+    },
+    ...generateColumnStyle(),
   },
   {
-    dataField: 'status',
+    dataField: FieldName.STATUS,
     text: 'Trạng thái',
     sort: true,
-  },
-  {
-    dataField: 'action',
-    isDummyField: true,
-    text: 'Thao tác',
-    formatter: (_: any, row: KhovtTransPhieuXuatWithRelations) => {
-      return <Link to={Page.SUPPLIES_STORE_EXPORT_DETAIL.PATH.replace(':id', String(row.id))}>Xem</Link>;
+    formatter: (cell: string, _: any) => {
+      if (!cell) {
+        return null;
+      }
+      return <div>{ExportStatus[cell as keyof typeof ExportStatus]?.text}</div>;
     },
+    csvFormatter: (cell: string, _: any) => {
+      if (!cell) {
+        return null;
+      }
+      return ExportStatus[cell as keyof typeof ExportStatus]?.text;
+    },
+    ...generateColumnStyle(),
   },
 ];
 
 const exportCSV = {
-  fileName: `Danh_sách_phiếu_xuất.csv`,
+  fileName: `Danh-sách-phiếu-xuất.csv`,
   onlyExportSelection: true,
   exportAll: true,
+  charset: 'utf-8',
 };
 
-const pagination = paginationFactory({
+const pagination = {
   page: 1,
   alwaysShowAllBtns: true,
   showTotal: true,
-  withFirstAndLast: false,
-  sizePerPageRenderer: ({ onSizePerPageChange }) => (
+  withFirstAndLast: true,
+  sizePerPageRenderer: ({ onSizePerPageChange }: SizePerPageRendererOptions) => (
     <div className="dataTables_length" id="datatable-basic_length">
       <label>
         Hiển thị&nbsp;
@@ -76,7 +112,7 @@ const pagination = paginationFactory({
             aria-controls="datatable-basic"
             className="form-control form-control-sm"
             onChange={(e) => onSizePerPageChange(Number(e.target.value))}>
-            <option value="9">10</option>
+            <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
             <option value="100">100</option>
@@ -86,26 +122,17 @@ const pagination = paginationFactory({
       </label>
     </div>
   ),
-  paginationTotalRenderer: (from, to, size) => (
+  paginationTotalRenderer: (from: number, to: number, size: number) => (
     <span className="react-bootstrap-table-pagination-total">
       &nbsp;Hiển thị hàng {from} đến {to} trên {size}
     </span>
   ),
-});
-
-const selectRow = {
-  mode: 'checkbox',
-  clickToSelect: true,
-  clickToEdit: true,
-  style: { backgroundColor: '#c8e6c9' },
 };
 
 const tableConfig = {
-  cellEdit,
   columns,
   exportCSV,
   pagination,
-  selectRow,
 };
 
 export default tableConfig;

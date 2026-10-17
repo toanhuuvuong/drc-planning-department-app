@@ -8,6 +8,10 @@
 
 export interface KhovtMasterKho {
   /** @nullable */
+  createTime?: string | null;
+  /** @nullable */
+  createUser?: string | null;
+  /** @nullable */
   ghiChu?: string | null;
   /** */
   id?: number;
@@ -15,4 +19,8 @@ export interface KhovtMasterKho {
   maKho: string;
   /** */
   tenKho: string;
+  /** @nullable */
+  updateTime?: string | null;
+  /** @nullable */
+  updateUser?: string | null;
 }

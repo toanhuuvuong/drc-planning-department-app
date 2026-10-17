@@ -5,43 +5,35 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { faker } from '@faker-js/faker';
-import { HttpResponse, delay, http } from 'msw';
-import type { PingResponse } from '../../models';
+import {
+  faker
+} from '@faker-js/faker'
+import {
+  HttpResponse,
+  delay,
+  http
+} from 'msw'
+import type {
+  PingResponse
+} from '../../models'
 
-export const getPingControllerPingResponseMock = (overrideResponse: Partial<PingResponse> = {}): PingResponse => ({
-  date: faker.helpers.arrayElement([faker.word.sample(), undefined]),
-  greeting: faker.helpers.arrayElement([faker.word.sample(), undefined]),
-  headers: faker.helpers.arrayElement([
-    { 'Content-Type': faker.helpers.arrayElement([faker.word.sample(), undefined]) },
-    undefined,
-  ]),
-  url: faker.helpers.arrayElement([faker.word.sample(), undefined]),
-  ...overrideResponse,
-});
+export const getPingControllerPingResponseMock = (overrideResponse: Partial< PingResponse > = {}): PingResponse => ({date: faker.helpers.arrayElement([faker.word.sample(), undefined]), greeting: faker.helpers.arrayElement([faker.word.sample(), undefined]), headers: faker.helpers.arrayElement([{'Content-Type': faker.helpers.arrayElement([faker.word.sample(), undefined])}, undefined]), url: faker.helpers.arrayElement([faker.word.sample(), undefined]), ...overrideResponse})
 
-export const getPingControllerPingMockHandler = (
-  overrideResponse?:
-    | PingResponse
-    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<PingResponse> | PingResponse),
-) => {
-  return http.get('*/ping', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getPingControllerPingResponseMock(),
-      ),
+
+export const getPingControllerPingMockHandler = (overrideResponse?: PingResponse | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<PingResponse> | PingResponse)) => {
+  return http.get('*/ping', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getPingControllerPingResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
-export const getPingControllerMock = () => [getPingControllerPingMockHandler()];
+        }
+      }
+    )
+  })
+}
+export const getPingControllerMock = () => [
+  getPingControllerPingMockHandler()
+]

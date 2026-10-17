@@ -9,4 +9,4 @@
 export type PingResponseHeaders = {
   'Content-Type'?: string;
   [key: string]: unknown;
-};
+ };

@@ -7,9 +7,12 @@
  */
 
 export type KhovtMasterNguonGocFilter1FieldsOneOf = {
+  createTime?: boolean;
+  createUser?: boolean;
   ghiChu?: boolean;
   id?: boolean;
-  maNguonGoc?: boolean;
   nuocId?: boolean;
   tenNhaSx?: boolean;
+  updateTime?: boolean;
+  updateUser?: boolean;
 };

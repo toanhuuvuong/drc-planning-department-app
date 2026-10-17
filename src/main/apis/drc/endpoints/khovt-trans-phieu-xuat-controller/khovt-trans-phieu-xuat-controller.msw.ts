@@ -5,204 +5,160 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { faker } from '@faker-js/faker';
-import { HttpResponse, delay, http } from 'msw';
-import type { KhovtTransPhieuXuat, KhovtTransPhieuXuatWithRelations, LoopbackCount } from '../../models';
+import {
+  faker
+} from '@faker-js/faker'
+import {
+  HttpResponse,
+  delay,
+  http
+} from 'msw'
+import type {
+  KhovtTransPhieuXuatControllerFindDetail200,
+  KhovtTransPhieuXuatControllerTraHang200,
+  KhovtTransPhieuXuatWithRelations,
+  LoopbackCount
+} from '../../models'
 
-export const getKhovtTransPhieuXuatControllerCountResponseMock = (
-  overrideResponse: Partial<LoopbackCount> = {},
-): LoopbackCount => ({
-  count: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-  ...overrideResponse,
-});
+export const getKhovtTransPhieuXuatControllerCreateResponseMock = (overrideResponse: Partial< KhovtTransPhieuXuatWithRelations > = {}): KhovtTransPhieuXuatWithRelations => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), details: faker.helpers.arrayElement([Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), foreignKey: faker.helpers.arrayElement([{}, undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), idNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), maLo: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguonGoc: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), phieuXuat: faker.helpers.arrayElement([{createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), details: faker.helpers.arrayElement([[], undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])}, undefined]), phieuXuatId: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), soLuongThucTe: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), soLuongYeuCau: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), tenVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tonKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ...overrideResponse})
 
-export const getKhovtTransPhieuXuatControllerFindByIdResponseMock = (
-  overrideResponse: Partial<KhovtTransPhieuXuatWithRelations> = {},
-): KhovtTransPhieuXuatWithRelations => ({
-  diDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  id: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-  khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  ngayXuat: faker.helpers.arrayElement([
-    faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]),
-    undefined,
-  ]),
-  nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  ...overrideResponse,
-});
+export const getKhovtTransPhieuXuatControllerCountResponseMock = (overrideResponse: Partial< LoopbackCount > = {}): LoopbackCount => ({count: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), ...overrideResponse})
 
-export const getKhovtTransPhieuXuatControllerCreateResponseMock = (
-  overrideResponse: Partial<KhovtTransPhieuXuat> = {},
-): KhovtTransPhieuXuat => ({
-  diDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  id: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-  khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  ngayXuat: faker.helpers.arrayElement([
-    faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]),
-    undefined,
-  ]),
-  nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  ...overrideResponse,
-});
+export const getKhovtTransPhieuXuatControllerFindDetailResponseMock = (overrideResponse: Partial< KhovtTransPhieuXuatControllerFindDetail200 > = {}): KhovtTransPhieuXuatControllerFindDetail200 => ({count: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), data: faker.helpers.arrayElement([Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), dvt: faker.helpers.arrayElement([faker.word.sample(), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), idNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maKho: faker.helpers.arrayElement([faker.word.sample(), undefined]), maLo: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNhom: faker.helpers.arrayElement([faker.word.sample(), undefined]), maVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), nguonGoc: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), phieuXuatId: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), soLuongThucTe: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), soLuongYeuCau: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tenDonVi: faker.helpers.arrayElement([faker.word.sample(), undefined]), tenKho: faker.helpers.arrayElement([faker.word.sample(), undefined]), tenNhom: faker.helpers.arrayElement([faker.word.sample(), undefined]), tenVt: faker.helpers.arrayElement([faker.word.sample(), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tonKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})), undefined]), ...overrideResponse})
 
-export const getKhovtTransPhieuXuatControllerFindResponseMock = (): KhovtTransPhieuXuatWithRelations[] =>
-  Array.from({ length: faker.number.int({ min: 10, max: 100 }) }, (_, i) => i + 1).map(() => ({
-    diDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    id: faker.helpers.arrayElement([faker.number.int({ min: 1, max: 100 })]),
-    khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    ngayXuat: faker.helpers.arrayElement([
-      faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]),
-      undefined,
-    ]),
-    nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  }));
+export const getKhovtTransPhieuXuatControllerTraHangResponseMock = (overrideResponse: Partial< KhovtTransPhieuXuatControllerTraHang200 > = {}): KhovtTransPhieuXuatControllerTraHang200 => ({id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), ...overrideResponse})
 
-export const getKhovtTransPhieuXuatControllerCountMockHandler = (
-  overrideResponse?:
-    | LoopbackCount
-    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<LoopbackCount> | LoopbackCount),
-) => {
-  return http.get('*/khovt-trans-phieu-xuats/count', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtTransPhieuXuatControllerCountResponseMock(),
-      ),
+export const getKhovtTransPhieuXuatControllerUpdateByIdResponseMock = (overrideResponse: Partial< KhovtTransPhieuXuatWithRelations > = {}): KhovtTransPhieuXuatWithRelations => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), details: faker.helpers.arrayElement([Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), foreignKey: faker.helpers.arrayElement([{}, undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), idNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), maLo: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguonGoc: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), phieuXuat: faker.helpers.arrayElement([{createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), details: faker.helpers.arrayElement([[], undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])}, undefined]), phieuXuatId: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), soLuongThucTe: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), soLuongYeuCau: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), tenVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tonKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ...overrideResponse})
+
+export const getKhovtTransPhieuXuatControllerFindByIdResponseMock = (overrideResponse: Partial< KhovtTransPhieuXuatWithRelations > = {}): KhovtTransPhieuXuatWithRelations => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), details: faker.helpers.arrayElement([Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), foreignKey: faker.helpers.arrayElement([{}, undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), idNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), maLo: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguonGoc: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), phieuXuat: faker.helpers.arrayElement([{createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), details: faker.helpers.arrayElement([[], undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])}, undefined]), phieuXuatId: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), soLuongThucTe: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), soLuongYeuCau: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), tenVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tonKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ...overrideResponse})
+
+export const getKhovtTransPhieuXuatControllerFindResponseMock = (): KhovtTransPhieuXuatWithRelations[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), details: faker.helpers.arrayElement([Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), foreignKey: faker.helpers.arrayElement([{}, undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), idNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), maLo: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguonGoc: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), phieuXuatId: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), soLuongThucTe: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), soLuongYeuCau: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), tenVt: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), tonKho: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), khoNhap: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), khoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), lyDoXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ngayXuat: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), nguoiTaoPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), soPhieu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), status: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), thongTinCanhBao: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})))
+
+
+export const getKhovtTransPhieuXuatControllerCreateMockHandler = (overrideResponse?: KhovtTransPhieuXuatWithRelations | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtTransPhieuXuatWithRelations> | KhovtTransPhieuXuatWithRelations)) => {
+  return http.post('*/khovt-trans-phieu-xuat', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtTransPhieuXuatControllerCreateResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtTransPhieuXuatControllerUpdateByIdMockHandler = () => {
-  return http.patch('*/khovt-trans-phieu-xuats/:id', async () => {
-    await delay(1000);
-    return new HttpResponse(null, {
-      status: 204,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  });
-};
-
-export const getKhovtTransPhieuXuatControllerFindByIdMockHandler = (
-  overrideResponse?:
-    | KhovtTransPhieuXuatWithRelations
-    | ((
-        info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<KhovtTransPhieuXuatWithRelations> | KhovtTransPhieuXuatWithRelations),
-) => {
-  return http.get('*/khovt-trans-phieu-xuats/:id', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtTransPhieuXuatControllerFindByIdResponseMock(),
-      ),
+export const getKhovtTransPhieuXuatControllerCountMockHandler = (overrideResponse?: LoopbackCount | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<LoopbackCount> | LoopbackCount)) => {
+  return http.get('*/khovt-trans-phieu-xuats/count', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtTransPhieuXuatControllerCountResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtTransPhieuXuatControllerDeleteByIdMockHandler = () => {
-  return http.delete('*/khovt-trans-phieu-xuats/:id', async () => {
-    await delay(1000);
-    return new HttpResponse(null, {
-      status: 204,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  });
-};
-
-export const getKhovtTransPhieuXuatControllerCreateMockHandler = (
-  overrideResponse?:
-    | KhovtTransPhieuXuat
-    | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtTransPhieuXuat> | KhovtTransPhieuXuat),
-) => {
-  return http.post('*/khovt-trans-phieu-xuats', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtTransPhieuXuatControllerCreateResponseMock(),
-      ),
+export const getKhovtTransPhieuXuatControllerFindDetailMockHandler = (overrideResponse?: KhovtTransPhieuXuatControllerFindDetail200 | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhovtTransPhieuXuatControllerFindDetail200> | KhovtTransPhieuXuatControllerFindDetail200)) => {
+  return http.get('*/khovt-trans-phieu-xuats/search-details', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtTransPhieuXuatControllerFindDetailResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtTransPhieuXuatControllerFindMockHandler = (
-  overrideResponse?:
-    | KhovtTransPhieuXuatWithRelations[]
-    | ((
-        info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<KhovtTransPhieuXuatWithRelations[]> | KhovtTransPhieuXuatWithRelations[]),
-) => {
-  return http.get('*/khovt-trans-phieu-xuats', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtTransPhieuXuatControllerFindResponseMock(),
-      ),
+export const getKhovtTransPhieuXuatControllerTraHangMockHandler = (overrideResponse?: KhovtTransPhieuXuatControllerTraHang200 | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtTransPhieuXuatControllerTraHang200> | KhovtTransPhieuXuatControllerTraHang200)) => {
+  return http.post('*/khovt-trans-phieu-xuats/tra-hang', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtTransPhieuXuatControllerTraHangResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
+
+export const getKhovtTransPhieuXuatControllerUpdateByIdMockHandler = (overrideResponse?: KhovtTransPhieuXuatWithRelations | ((info: Parameters<Parameters<typeof http.patch>[1]>[0]) => Promise<KhovtTransPhieuXuatWithRelations> | KhovtTransPhieuXuatWithRelations)) => {
+  return http.patch('*/khovt-trans-phieu-xuats/:id', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtTransPhieuXuatControllerUpdateByIdResponseMock()),
+      {
+        status: 204,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
+
+export const getKhovtTransPhieuXuatControllerFindByIdMockHandler = (overrideResponse?: KhovtTransPhieuXuatWithRelations | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhovtTransPhieuXuatWithRelations> | KhovtTransPhieuXuatWithRelations)) => {
+  return http.get('*/khovt-trans-phieu-xuats/:id', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtTransPhieuXuatControllerFindByIdResponseMock()),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
+
+export const getKhovtTransPhieuXuatControllerCancelByIdMockHandler = () => {
+  return http.delete('*/khovt-trans-phieu-xuats/:id', async () => {await delay(1000);
+    return new HttpResponse(null,
+      {
+        status: 204,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
+
+export const getKhovtTransPhieuXuatControllerFindMockHandler = (overrideResponse?: KhovtTransPhieuXuatWithRelations[] | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhovtTransPhieuXuatWithRelations[]> | KhovtTransPhieuXuatWithRelations[])) => {
+  return http.get('*/khovt-trans-phieu-xuats', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtTransPhieuXuatControllerFindResponseMock()),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
 export const getKhovtTransPhieuXuatControllerMock = () => [
+  getKhovtTransPhieuXuatControllerCreateMockHandler(),
   getKhovtTransPhieuXuatControllerCountMockHandler(),
+  getKhovtTransPhieuXuatControllerFindDetailMockHandler(),
+  getKhovtTransPhieuXuatControllerTraHangMockHandler(),
   getKhovtTransPhieuXuatControllerUpdateByIdMockHandler(),
   getKhovtTransPhieuXuatControllerFindByIdMockHandler(),
-  getKhovtTransPhieuXuatControllerDeleteByIdMockHandler(),
-  getKhovtTransPhieuXuatControllerCreateMockHandler(),
-  getKhovtTransPhieuXuatControllerFindMockHandler(),
-];
+  getKhovtTransPhieuXuatControllerCancelByIdMockHandler(),
+  getKhovtTransPhieuXuatControllerFindMockHandler()
+]

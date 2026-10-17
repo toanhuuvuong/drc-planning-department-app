@@ -8,6 +8,4 @@
 import type { KhovtMasterNhomFilter1FieldsOneOf } from './khovtMasterNhomFilter1FieldsOneOf';
 import type { KhovtMasterNhomFilter1FieldsOneOfTwoItem } from './khovtMasterNhomFilter1FieldsOneOfTwoItem';
 
-export type KhovtMasterNhomFilter1Fields =
-  | KhovtMasterNhomFilter1FieldsOneOf
-  | KhovtMasterNhomFilter1FieldsOneOfTwoItem[];
+export type KhovtMasterNhomFilter1Fields = KhovtMasterNhomFilter1FieldsOneOf | KhovtMasterNhomFilter1FieldsOneOfTwoItem[];

@@ -5,180 +5,138 @@
  * pkh api
  * OpenAPI spec version: 0.0.1
  */
-import { faker } from '@faker-js/faker';
-import { HttpResponse, delay, http } from 'msw';
-import type { KhovtMasterNguonGoc, KhovtMasterNguonGocWithRelations, LoopbackCount } from '../../models';
+import {
+  faker
+} from '@faker-js/faker'
+import {
+  HttpResponse,
+  delay,
+  http
+} from 'msw'
+import type {
+  KhoMasterNuoc,
+  KhovtMasterNguonGoc,
+  KhovtMasterNguonGocWithRelations,
+  LoopbackCount
+} from '../../models'
 
-export const getKhovtMasterNguonGocControllerCountResponseMock = (
-  overrideResponse: Partial<LoopbackCount> = {},
-): LoopbackCount => ({
-  count: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-  ...overrideResponse,
-});
+export const getKhovtMasterNguonGocControllerCountResponseMock = (overrideResponse: Partial< LoopbackCount > = {}): LoopbackCount => ({count: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), ...overrideResponse})
 
-export const getKhovtMasterNguonGocControllerFindByIdResponseMock = (
-  overrideResponse: Partial<KhovtMasterNguonGocWithRelations> = {},
-): KhovtMasterNguonGocWithRelations => ({
-  ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  id: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-  maNguonGoc: faker.word.sample(),
-  nuocId: faker.number.int({ min: undefined, max: undefined }),
-  tenNhaSx: faker.word.sample(),
-  ...overrideResponse,
-});
+export const getKhovtMasterNguonGocControllerFindNuocResponseMock = (): KhoMasterNuoc[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNuoc: faker.word.sample(), tenNuoc: faker.word.sample(), tenNuocVn: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})))
 
-export const getKhovtMasterNguonGocControllerCreateResponseMock = (
-  overrideResponse: Partial<KhovtMasterNguonGoc> = {},
-): KhovtMasterNguonGoc => ({
-  ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-  id: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-  maNguonGoc: faker.word.sample(),
-  nuocId: faker.number.int({ min: undefined, max: undefined }),
-  tenNhaSx: faker.word.sample(),
-  ...overrideResponse,
-});
+export const getKhovtMasterNguonGocControllerFindByIdResponseMock = (overrideResponse: Partial< KhovtMasterNguonGocWithRelations > = {}): KhovtMasterNguonGocWithRelations => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), foreignKey: faker.helpers.arrayElement([{}, undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), nuoc: faker.helpers.arrayElement([{createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNuoc: faker.word.sample(), tenNuoc: faker.word.sample(), tenNuocVn: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])}, undefined]), nuocId: faker.helpers.arrayElement([faker.word.sample(), undefined]), tenNhaSx: faker.word.sample(), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ...overrideResponse})
 
-export const getKhovtMasterNguonGocControllerFindResponseMock = (): KhovtMasterNguonGocWithRelations[] =>
-  Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
-    ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]),
-    id: faker.helpers.arrayElement([faker.number.int({ min: undefined, max: undefined }), undefined]),
-    maNguonGoc: faker.word.sample(),
-    nuocId: faker.number.int({ min: undefined, max: undefined }),
-    tenNhaSx: faker.word.sample(),
-  }));
+export const getKhovtMasterNguonGocControllerCreateResponseMock = (overrideResponse: Partial< KhovtMasterNguonGoc > = {}): KhovtMasterNguonGoc => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), nuocId: faker.helpers.arrayElement([faker.word.sample(), undefined]), tenNhaSx: faker.word.sample(), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), ...overrideResponse})
 
-export const getKhovtMasterNguonGocControllerCountMockHandler = (
-  overrideResponse?:
-    | LoopbackCount
-    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<LoopbackCount> | LoopbackCount),
-) => {
-  return http.get('*/khovt-master-nguon-gocs/count', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterNguonGocControllerCountResponseMock(),
-      ),
+export const getKhovtMasterNguonGocControllerFindResponseMock = (): KhovtMasterNguonGocWithRelations[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), foreignKey: faker.helpers.arrayElement([{}, undefined]), ghiChu: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), id: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}), undefined]), nuoc: faker.helpers.arrayElement([{createTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), createUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), maNuoc: faker.word.sample(), tenNuoc: faker.word.sample(), tenNuocVn: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined]), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])}, undefined]), nuocId: faker.helpers.arrayElement([faker.word.sample(), undefined]), tenNhaSx: faker.word.sample(), updateTime: faker.helpers.arrayElement([faker.helpers.arrayElement([`${faker.date.past().toISOString().split('.')[0]}Z`, null]), undefined]), updateUser: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.word.sample(), null]), undefined])})))
+
+
+export const getKhovtMasterNguonGocControllerCountMockHandler = (overrideResponse?: LoopbackCount | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<LoopbackCount> | LoopbackCount)) => {
+  return http.get('*/khovt-master-nguon-gocs/count', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterNguonGocControllerCountResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
+
+export const getKhovtMasterNguonGocControllerFindNuocMockHandler = (overrideResponse?: KhoMasterNuoc[] | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhoMasterNuoc[]> | KhoMasterNuoc[])) => {
+  return http.get('*/khovt-master-nguon-gocs/nuoc', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterNguonGocControllerFindNuocResponseMock()),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
 
 export const getKhovtMasterNguonGocControllerUpdateByIdMockHandler = () => {
-  return http.patch('*/khovt-master-nguon-gocs/:id', async () => {
-    await delay(1000);
-    return new HttpResponse(null, {
-      status: 204,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  });
-};
+  return http.patch('*/khovt-master-nguon-gocs/:id', async () => {await delay(1000);
+    return new HttpResponse(null,
+      {
+        status: 204,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtMasterNguonGocControllerFindByIdMockHandler = (
-  overrideResponse?:
-    | KhovtMasterNguonGocWithRelations
-    | ((
-        info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<KhovtMasterNguonGocWithRelations> | KhovtMasterNguonGocWithRelations),
-) => {
-  return http.get('*/khovt-master-nguon-gocs/:id', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterNguonGocControllerFindByIdResponseMock(),
-      ),
+export const getKhovtMasterNguonGocControllerFindByIdMockHandler = (overrideResponse?: KhovtMasterNguonGocWithRelations | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhovtMasterNguonGocWithRelations> | KhovtMasterNguonGocWithRelations)) => {
+  return http.get('*/khovt-master-nguon-gocs/:id', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterNguonGocControllerFindByIdResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 
 export const getKhovtMasterNguonGocControllerDeleteByIdMockHandler = () => {
-  return http.delete('*/khovt-master-nguon-gocs/:id', async () => {
-    await delay(1000);
-    return new HttpResponse(null, {
-      status: 204,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  });
-};
+  return http.delete('*/khovt-master-nguon-gocs/:id', async () => {await delay(1000);
+    return new HttpResponse(null,
+      {
+        status: 204,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtMasterNguonGocControllerCreateMockHandler = (
-  overrideResponse?:
-    | KhovtMasterNguonGoc
-    | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtMasterNguonGoc> | KhovtMasterNguonGoc),
-) => {
-  return http.post('*/khovt-master-nguon-gocs', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterNguonGocControllerCreateResponseMock(),
-      ),
+export const getKhovtMasterNguonGocControllerCreateMockHandler = (overrideResponse?: KhovtMasterNguonGoc | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<KhovtMasterNguonGoc> | KhovtMasterNguonGoc)) => {
+  return http.post('*/khovt-master-nguon-gocs', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterNguonGocControllerCreateResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 
-export const getKhovtMasterNguonGocControllerFindMockHandler = (
-  overrideResponse?:
-    | KhovtMasterNguonGocWithRelations[]
-    | ((
-        info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<KhovtMasterNguonGocWithRelations[]> | KhovtMasterNguonGocWithRelations[]),
-) => {
-  return http.get('*/khovt-master-nguon-gocs', async (info) => {
-    await delay(1000);
-    return new HttpResponse(
-      JSON.stringify(
-        overrideResponse !== undefined
-          ? typeof overrideResponse === 'function'
-            ? await overrideResponse(info)
-            : overrideResponse
-          : getKhovtMasterNguonGocControllerFindResponseMock(),
-      ),
+export const getKhovtMasterNguonGocControllerFindMockHandler = (overrideResponse?: KhovtMasterNguonGocWithRelations[] | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<KhovtMasterNguonGocWithRelations[]> | KhovtMasterNguonGocWithRelations[])) => {
+  return http.get('*/khovt-master-nguon-gocs', async (info) => {await delay(1000);
+    return new HttpResponse(JSON.stringify(overrideResponse !== undefined 
+            ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse) 
+            : getKhovtMasterNguonGocControllerFindResponseMock()),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
-      },
-    );
-  });
-};
+        }
+      }
+    )
+  })
+}
 export const getKhovtMasterNguonGocControllerMock = () => [
   getKhovtMasterNguonGocControllerCountMockHandler(),
+  getKhovtMasterNguonGocControllerFindNuocMockHandler(),
   getKhovtMasterNguonGocControllerUpdateByIdMockHandler(),
   getKhovtMasterNguonGocControllerFindByIdMockHandler(),
   getKhovtMasterNguonGocControllerDeleteByIdMockHandler(),
   getKhovtMasterNguonGocControllerCreateMockHandler(),
-  getKhovtMasterNguonGocControllerFindMockHandler(),
-];
+  getKhovtMasterNguonGocControllerFindMockHandler()
+]

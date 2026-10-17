@@ -1,14 +1,19 @@
-import classnames from 'classnames';
+import { Credentials } from 'main/apis/drc/models';
 import AuthHeader from 'main/components/organisms/header/auth-header';
-import { useState } from 'react';
+import { useAuth } from 'main/hooks';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import {
   Button,
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
   Col,
   Container,
   Form,
+  FormFeedback,
   FormGroup,
   Input,
   InputGroup,
@@ -17,9 +22,61 @@ import {
   Row,
 } from 'reactstrap';
 
-function Login() {
-  const [focusedEmail, setFocusedEmail] = useState(false);
-  const [focusedPassword, setFocusedPassword] = useState(false);
+const Login = () => {
+  const [credential, setCredential] = useState({ email: '', password: '' });
+  const [errors, setErrors] = useState({ email: '', password: '' });
+
+  const navigate = useNavigate();
+  const { login } = useAuth({
+    onSuccess: () => navigate('/'),
+    onError: (errorMessage) => {
+      toast.error(
+        <div>
+          <b>Đăng nhập thất bại</b> <br />
+          {errorMessage}
+        </div>,
+      );
+    },
+  });
+
+  const isValidInput = () => {
+    const newErrors: Credentials = { email: '', password: '' };
+
+    if (!credential.email) {
+      newErrors.email = 'Username là trường bắt buộc';
+    }
+
+    if (!credential.password) {
+      newErrors.password = 'Mật khẩu là trường bắt buộc';
+    }
+
+    setErrors(newErrors);
+    return !newErrors.email && !newErrors.password;
+  };
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setCredential((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    setCredential((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
+  function handleLogin() {
+    if (isValidInput()) {
+      login(credential);
+    }
+  }
 
   return (
     <>
@@ -30,49 +87,33 @@ function Login() {
           <Col lg="5" md="7">
             <Card className="bg-secondary border-0 mb-0">
               <CardHeader className="bg-transparent pb-5">
-                <div className="text-muted text-center mt-2 mb-3">
-                  <small>Đăng nhập với</small>
-                </div>
-                <div className="btn-wrapper text-center">
-                  <Button
-                    className="btn-neutral btn-icon"
-                    color="default"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}>
-                    <span className="btn-inner--icon mr-1">
-                      <img alt="..." src={require('template/assets/img/icons/common/google.svg').default} />
-                    </span>
-                    <span className="btn-inner--text">Google</span>
-                  </Button>
+                <div className="text-muted text-center">
+                  <b>Đăng nhập để tiếp tục sử dụng</b>
                 </div>
               </CardHeader>
-              <CardBody className="px-lg-5 py-lg-5">
-                <div className="text-center text-muted mb-4">
-                  <small>Hoặc đăng nhập bằng thông tin</small>
-                </div>
-                <Form role="form">
-                  <FormGroup
-                    className={classnames('mb-3', {
-                      focused: focusedEmail,
-                    })}>
+              <CardBody className="px-lg-5 py-lg-4">
+                <Form>
+                  <FormGroup>
                     <InputGroup className="input-group-merge input-group-alternative">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-email-83" />
+                          <i className="ni ni-circle-08" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Email"
-                        type="email"
-                        onFocus={() => setFocusedEmail(true)}
-                        onBlur={() => setFocusedEmail(true)}
+                        name="email"
+                        placeholder="Username"
+                        type="text"
+                        required
+                        onChange={onInputChange}
+                        onKeyDown={onEnter}
+                        invalid={!!errors.email}
+                        value={credential.email}
                       />
+                      <FormFeedback className="d-block">{errors?.email}</FormFeedback>
                     </InputGroup>
                   </FormGroup>
-                  <FormGroup
-                    className={classnames({
-                      focused: focusedPassword,
-                    })}>
+                  <FormGroup>
                     <InputGroup className="input-group-merge input-group-alternative">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -80,44 +121,40 @@ function Login() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
+                        name="password"
                         placeholder="Mật khẩu"
                         type="password"
-                        onFocus={() => setFocusedPassword(true)}
-                        onBlur={() => setFocusedPassword(true)}
+                        required
+                        onChange={onInputChange}
+                        onKeyDown={onEnter}
+                        invalid={!!errors.password}
+                        value={credential.password}
                       />
+                      <FormFeedback className="d-block">{errors?.password}</FormFeedback>
                     </InputGroup>
                   </FormGroup>
-                  <div className="custom-control custom-control-alternative custom-checkbox">
-                    <input className="custom-control-input" id=" customCheckLogin" type="checkbox" />
-                    <label className="custom-control-label" htmlFor=" customCheckLogin">
-                      <span className="text-muted">Nhớ mật khẩu</span>
-                    </label>
-                  </div>
                   <div className="text-center">
-                    <Button className="my-4" color="info" type="button">
+                    <Button onClick={handleLogin} color="primary" type="button">
                       Đăng nhập
                     </Button>
                   </div>
                 </Form>
               </CardBody>
+              <CardFooter>
+                <Row>
+                  <Col xs="12">
+                    <small>
+                      <i>Nếu bạn quên mật khẩu, hãy liên hệ Admin để thực hiện cấp lại mật khẩu cho bạn.</i>
+                    </small>
+                  </Col>
+                </Row>
+              </CardFooter>
             </Card>
-            <Row className="mt-3">
-              <Col xs="6">
-                <a className="text-light" href="#pablo" onClick={(e) => e.preventDefault()}>
-                  <small>Quên mật khẩu?</small>
-                </a>
-              </Col>
-              <Col className="text-right" xs="6">
-                <a className="text-light" href="#pablo" onClick={(e) => e.preventDefault()}>
-                  <small>Tạo tài khoản</small>
-                </a>
-              </Col>
-            </Row>
           </Col>
         </Row>
       </Container>
     </>
   );
-}
+};
 
 export default Login;

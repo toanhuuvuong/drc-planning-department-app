@@ -6,14 +6,17 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type KhovtMasterNguonGocFilter1FieldsOneOfTwoItem =
-  (typeof KhovtMasterNguonGocFilter1FieldsOneOfTwoItem)[keyof typeof KhovtMasterNguonGocFilter1FieldsOneOfTwoItem];
+export type KhovtMasterNguonGocFilter1FieldsOneOfTwoItem = typeof KhovtMasterNguonGocFilter1FieldsOneOfTwoItem[keyof typeof KhovtMasterNguonGocFilter1FieldsOneOfTwoItem];
+
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const KhovtMasterNguonGocFilter1FieldsOneOfTwoItem = {
   ghiChu: 'ghiChu',
   id: 'id',
-  maNguonGoc: 'maNguonGoc',
   nuocId: 'nuocId',
   tenNhaSx: 'tenNhaSx',
+  createTime: 'createTime',
+  updateTime: 'updateTime',
+  createUser: 'createUser',
+  updateUser: 'updateUser',
 } as const;

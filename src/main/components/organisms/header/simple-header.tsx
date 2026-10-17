@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem, Col, Container, Row } from 'reactstrap';
 
 type Props = {
+  pageCategory: string;
   pageName: string;
   parentPage?: {
     name: string;
@@ -10,14 +11,14 @@ type Props = {
   };
 };
 
-function SimpleHeader({ pageName, parentPage }: Props) {
+function SimpleHeader({ pageCategory, pageName, parentPage }: Props) {
   return (
     <div className="header header-dark bg-info pb-6 content__title content__title--calendar">
       <Container fluid>
-        <div className="header-body">
-          <Row className="align-items-center py-4">
+        {/*<div className="header-body">
+          {/* <Row className="align-items-center py-4">
             <Col lg="6" xs="7">
-              <h6 className="fullcalendar-title h2 text-white d-inline-block mb-0">{pageName}</h6>&nbsp;
+              <h6 className="fullcalendar-title h2 text-white d-inline-block mb-0">{pageCategory}</h6>&nbsp;
               <Breadcrumb className="d-none d-md-inline-block ml-lg-4" listClassName="breadcrumb-links breadcrumb-dark">
                 <BreadcrumbItem>
                   <Link to={Page.DASHBOARD.PATH}>
@@ -34,8 +35,8 @@ function SimpleHeader({ pageName, parentPage }: Props) {
                 </BreadcrumbItem>
               </Breadcrumb>
             </Col>
-          </Row>
-        </div>
+          </Row> 
+        </div>*/}
       </Container>
     </div>
   );
